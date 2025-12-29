@@ -1,0 +1,131 @@
+{
+  "metadata": {
+    "title": "Reggie - Guide NBA sans spoilers",
+    "description": "Découvrez quels matchs NBA valent le coup d'être regardés, sans spoilers. Analyses pré et post-match pour les fans de basket."
+  },
+  "nav": {
+    "news": "Actus",
+    "today": "Aujourd'hui",
+    "standings": "Classement",
+    "teams": "Équipes",
+    "methodology": "Méthodologie"
+  },
+  "teams": {
+    "title": "Équipes NBA",
+    "pageTitle": "Équipes NBA | Reggie",
+    "pageDescription": "Découvrez toutes les équipes NBA et leurs analyses de matchs sur Reggie.",
+    "eastern": "Conférence Est",
+    "western": "Conférence Ouest"
+  },
+  "home": {
+    "latestNews": "Dernières actus",
+    "todayMatches": "Matchs du jour",
+    "standings": "Classement",
+    "noMatchesToday": "Pas de matchs aujourd'hui",
+    "noYesterdayMatches": "Pas de matchs analysés hier"
+  },
+  "match": {
+    "vs": "VS",
+    "scheduled": "Programmé",
+    "inProgress": "En cours",
+    "finished": "Terminé",
+    "analyzing": "Analyse en cours...",
+    "viewAnalysis": "Voir l'analyse",
+    "hideAnalysis": "Masquer l'analyse",
+    "relatedMatches": "Dernières analyses",
+    "upcomingMatches": "Prochains matchs",
+    "bestFor": "Pour"
+  },
+  "analysis": {
+    "breakdown": "Détail du score",
+    "stakes": "Enjeux",
+    "starPower": "Stars",
+    "recentForm": "Forme récente",
+    "performances": "Performances",
+    "clutch": "Clutch",
+    "gameDynamics": "Dynamique du match",
+    "pace": "Rythme",
+    "physicality": "Physique",
+    "shooting": "Tir",
+    "standoutPlayers": "Joueurs remarquables",
+    "keyFactors": "Points clés"
+  },
+  "standings": {
+    "east": "Est",
+    "west": "Ouest",
+    "rank": "#",
+    "team": "Équipe",
+    "wins": "V",
+    "losses": "D",
+    "pct": "%",
+    "last10": "10 derniers",
+    "streak": "Série"
+  },
+  "team": {
+    "allMatches": "Tous les matchs",
+    "filterRecent": "Plus récents",
+    "filterBest": "Meilleures notes",
+    "noMatches": "Aucun match analysé"
+  },
+  "footer": {
+    "theme": "Thème",
+    "dark": "Sombre",
+    "light": "Clair",
+    "language": "Langue",
+    "methodology": "Comment ça marche ?",
+    "copyright": "© 2025 Reggie. Tous droits réservés."
+  },
+  "methodology": {
+    "title": "Comment ça marche ?",
+    "intro": "Reggie analyse chaque match NBA pour vous dire lesquels valent vraiment le coup d'être regardés, sans jamais spoiler le résultat.",
+    "prematch": {
+      "title": "Analyse pré-match",
+      "subtitle": "Avant le match, on évalue son potentiel sur 3 critères :",
+      "stakes": {
+        "label": "Enjeux",
+        "description": "Impact sur le classement, rivalités historiques, importance de la rencontre."
+      },
+      "stars": {
+        "label": "Stars",
+        "description": "Présence de joueurs vedettes et qualité des duels attendus."
+      },
+      "form": {
+        "label": "Forme récente",
+        "description": "Dynamique des équipes sur les 10 derniers matchs."
+      }
+    },
+    "postmatch": {
+      "title": "Analyse post-match",
+      "subtitle": "Après le match, on évalue ce qui s'est vraiment passé :",
+      "stakes": {
+        "label": "Enjeux",
+        "description": "Contexte et importance confirmés du match."
+      },
+      "stars": {
+        "label": "Stars",
+        "description": "Impact réel des joueurs vedettes."
+      },
+      "performances": {
+        "label": "Performances",
+        "description": "Statistiques et exploits individuels marquants."
+      },
+      "clutch": {
+        "label": "Clutch",
+        "description": "Suspense, finish serré, moments décisifs."
+      }
+    },
+    "total": "Total",
+    "footer": "Les notes vont de 0 à 100. Au-dessus de 80, c'est épique. Entre 70-80, c'est un must watch. Entre 50-70, ça vaut le coup. En dessous de 50, vous pouvez passer."
+  },
+  "dynamics": {
+    "slow": "Lent",
+    "medium": "Modéré",
+    "fast": "Rapide",
+    "soft": "Soft",
+    "moderate": "Modéré",
+    "intense": "Intense",
+    "cold": "Froid",
+    "average": "Moyen",
+    "hot": "Chaud"
+  }
+}

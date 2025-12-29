@@ -1,0 +1,131 @@
+{
+  "metadata": {
+    "title": "Reggie - Spoiler-Free NBA Guide",
+    "description": "Find out which NBA games are worth watching, spoiler-free. Pre and post-game analysis for basketball fans."
+  },
+  "nav": {
+    "news": "News",
+    "today": "Today",
+    "standings": "Standings",
+    "teams": "Teams",
+    "methodology": "Methodology"
+  },
+  "teams": {
+    "title": "NBA Teams",
+    "pageTitle": "NBA Teams | Reggie",
+    "pageDescription": "Explore all NBA teams and their game analyses on Reggie.",
+    "eastern": "Eastern Conference",
+    "western": "Western Conference"
+  },
+  "home": {
+    "latestNews": "Latest News",
+    "todayMatches": "Today's Games",
+    "standings": "Standings",
+    "noMatchesToday": "No games today",
+    "noYesterdayMatches": "No analyzed games yesterday"
+  },
+  "match": {
+    "vs": "VS",
+    "scheduled": "Scheduled",
+    "inProgress": "In Progress",
+    "finished": "Final",
+    "analyzing": "Analyzing...",
+    "viewAnalysis": "View analysis",
+    "hideAnalysis": "Hide analysis",
+    "relatedMatches": "Recent Analysis",
+    "upcomingMatches": "Upcoming Games",
+    "bestFor": "Best for"
+  },
+  "analysis": {
+    "breakdown": "Score Breakdown",
+    "stakes": "Stakes",
+    "starPower": "Star Power",
+    "recentForm": "Recent Form",
+    "performances": "Performances",
+    "clutch": "Clutch Factor",
+    "gameDynamics": "Game Dynamics",
+    "pace": "Pace",
+    "physicality": "Physical",
+    "shooting": "Shooting",
+    "standoutPlayers": "Standout Players",
+    "keyFactors": "Key Factors"
+  },
+  "standings": {
+    "east": "East",
+    "west": "West",
+    "rank": "#",
+    "team": "Team",
+    "wins": "W",
+    "losses": "L",
+    "pct": "PCT",
+    "last10": "L10",
+    "streak": "Streak"
+  },
+  "team": {
+    "allMatches": "All Games",
+    "filterRecent": "Most Recent",
+    "filterBest": "Best Rated",
+    "noMatches": "No analyzed games"
+  },
+  "footer": {
+    "theme": "Theme",
+    "dark": "Dark",
+    "light": "Light",
+    "language": "Language",
+    "methodology": "How it works",
+    "copyright": "© 2025 Reggie. All rights reserved."
+  },
+  "methodology": {
+    "title": "How it works",
+    "intro": "Reggie analyzes every NBA game to tell you which ones are truly worth watching, without ever spoiling the result.",
+    "prematch": {
+      "title": "Pre-game Analysis",
+      "subtitle": "Before the game, we evaluate its potential on 3 criteria:",
+      "stakes": {
+        "label": "Stakes",
+        "description": "Impact on standings, historic rivalries, importance of the matchup."
+      },
+      "stars": {
+        "label": "Star Power",
+        "description": "Presence of star players and quality of expected matchups."
+      },
+      "form": {
+        "label": "Recent Form",
+        "description": "Team momentum over the last 10 games."
+      }
+    },
+    "postmatch": {
+      "title": "Post-game Analysis",
+      "subtitle": "After the game, we evaluate what actually happened:",
+      "stakes": {
+        "label": "Stakes",
+        "description": "Confirmed context and importance of the game."
+      },
+      "stars": {
+        "label": "Star Power",
+        "description": "Actual impact of star players."
+      },
+      "performances": {
+        "label": "Performances",
+        "description": "Outstanding individual statistics and feats."
+      },
+      "clutch": {
+        "label": "Clutch Factor",
+        "description": "Suspense, close finish, clutch moments."
+      }
+    },
+    "total": "Total",
+    "footer": "Scores range from 0 to 100. Above 80 is epic. Between 70-80 is a must watch. Between 50-70 is worth it. Below 50, you can skip."
+  },
+  "dynamics": {
+    "slow": "Slow",
+    "medium": "Medium",
+    "fast": "Fast",
+    "soft": "Soft",
+    "moderate": "Moderate",
+    "intense": "Intense",
+    "cold": "Cold",
+    "average": "Average",
+    "hot": "Hot"
+  }
+}

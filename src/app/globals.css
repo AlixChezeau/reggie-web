@@ -1,26 +1,92 @@
 @import "tailwindcss";
 
+/* Dark theme (default) */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0A0F1C;
+  --background-gradient: #1C2430;
+  --foreground: #F2F2F2;
+  --foreground-secondary: #9CA3AF;
+  --foreground-muted: #4A4A4A;
+  --card: rgba(255, 255, 255, 0.05);
+  --card-border: rgba(255, 255, 255, 0.1);
+  --card-hover: rgba(255, 180, 0, 0.1);
+  --primary: #FFB400;
+  --success: #22C55E;
+  --warning: #EAB308;
+  --error: #EF4444;
+  --info: #3B82F6;
+  --overlay: rgba(0, 0, 0, 0.5);
+  /* Rating colors */
+  --rating-epic: #8B5CF6;
+  --rating-must-watch: #22C55E;
+  --rating-worth-it: #EAB308;
+  --rating-skip: #EF4444;
+}
+
+/* Light theme "NBA Court" */
+.light {
+  --background: #FDF6E3;
+  --background-gradient: #FAF0D7;
+  --foreground: #2D2D2D;
+  --foreground-secondary: #5C5C5C;
+  --foreground-muted: #8B8B8B;
+  --card: #FFFFFF;
+  --card-border: rgba(139, 90, 43, 0.15);
+  --card-hover: rgba(230, 126, 34, 0.1);
+  --primary: #E67E22;
+  --overlay: rgba(0, 0, 0, 0.3);
 }
 
 @theme inline {
   --color-background: var(--background);
+  --color-background-gradient: var(--background-gradient);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-foreground-secondary: var(--foreground-secondary);
+  --color-foreground-muted: var(--foreground-muted);
+  --color-card: var(--card);
+  --color-card-border: var(--card-border);
+  --color-card-hover: var(--card-hover);
+  --color-primary: var(--primary);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-error: var(--error);
+  --color-info: var(--info);
+  --color-overlay: var(--overlay);
+  --color-rating-epic: var(--rating-epic);
+  --color-rating-must-watch: var(--rating-must-watch);
+  --color-rating-worth-it: var(--rating-worth-it);
+  --color-rating-skip: var(--rating-skip);
+  --font-sans: var(--font-inter);
+  --font-title: var(--font-bebas-neue);
 }
 
 body {
-  background: var(--background);
+  background: linear-gradient(to bottom, var(--background), var(--background-gradient));
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), system-ui, sans-serif;
+  min-height: 100vh;
+}
+
+/* Smooth transitions for theme changes */
+* {
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--foreground-muted);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--foreground-secondary);
 }
