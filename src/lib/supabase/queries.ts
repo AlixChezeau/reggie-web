@@ -170,8 +170,23 @@ export async function getMatchBySlug(slug: string): Promise<Match | null> {
   return null;
 }
 
+async function getTeamIdByAbbr(supabase: any, teamAbbr: string): Promise<string | null> {
+  const { data } = await supabase
+    .from('teams')
+    .select('id')
+    .eq('abbreviation', teamAbbr)
+    .single();
+  return data?.id || null;
+}
+
 export async function getTeamMatches(teamAbbr: string, limit = 20): Promise<Match[]> {
   const supabase = await createClient();
+
+  const teamId = await getTeamIdByAbbr(supabase, teamAbbr);
+  if (!teamId) {
+    console.error('Team not found:', teamAbbr);
+    return [];
+  }
 
   const { data, error } = await supabase
     .from('games')
@@ -186,7 +201,7 @@ export async function getTeamMatches(teamAbbr: string, limit = 20): Promise<Matc
       away_team:teams!games_away_team_id_fkey(abbreviation, name, city),
       game_analyses(*)
     `)
-    .or(`home_team.abbreviation.eq.${teamAbbr},away_team.abbreviation.eq.${teamAbbr}`)
+    .or(`home_team_id.eq.${teamId},away_team_id.eq.${teamId}`)
     .not('game_analyses', 'is', null)
     .order('scheduled_at', { ascending: false })
     .limit(limit);
@@ -250,6 +265,11 @@ export async function getStandings(): Promise<{ east: TeamStanding[]; west: Team
 export async function getRelatedMatches(teamAbbr: string, currentMatchId: string, limit = 2): Promise<Match[]> {
   const supabase = await createClient();
 
+  const teamId = await getTeamIdByAbbr(supabase, teamAbbr);
+  if (!teamId) {
+    return [];
+  }
+
   const { data, error } = await supabase
     .from('games')
     .select(`
@@ -263,7 +283,7 @@ export async function getRelatedMatches(teamAbbr: string, currentMatchId: string
       away_team:teams!games_away_team_id_fkey(abbreviation, name, city),
       game_analyses(*)
     `)
-    .or(`home_team.abbreviation.eq.${teamAbbr},away_team.abbreviation.eq.${teamAbbr}`)
+    .or(`home_team_id.eq.${teamId},away_team_id.eq.${teamId}`)
     .neq('id', currentMatchId)
     .not('game_analyses', 'is', null)
     .eq('status', 'finished')
@@ -282,6 +302,11 @@ export async function getUpcomingMatches(teamAbbr: string, limit = 2): Promise<M
   const supabase = await createClient();
   const now = new Date().toISOString();
 
+  const teamId = await getTeamIdByAbbr(supabase, teamAbbr);
+  if (!teamId) {
+    return [];
+  }
+
   const { data, error } = await supabase
     .from('games')
     .select(`
@@ -293,7 +318,7 @@ export async function getUpcomingMatches(teamAbbr: string, limit = 2): Promise<M
       away_team:teams!games_away_team_id_fkey(abbreviation, name, city),
       game_analyses(*)
     `)
-    .or(`home_team.abbreviation.eq.${teamAbbr},away_team.abbreviation.eq.${teamAbbr}`)
+    .or(`home_team_id.eq.${teamId},away_team_id.eq.${teamId}`)
     .eq('status', 'scheduled')
     .gte('scheduled_at', now)
     .order('scheduled_at', { ascending: true })
