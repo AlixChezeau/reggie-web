@@ -13,7 +13,7 @@ export function LocaleSwitcher() {
     const segments = pathname.split('/');
     segments[1] = newLocale;
 
-    // Handle path translations (equipe <-> team, methodologie <-> methodology)
+    // Handle path translations (equipe <-> team, methodologie <-> methodology, confidentialite <-> privacy)
     if (segments[2] === 'equipe' && newLocale === 'en') {
       segments[2] = 'team';
     } else if (segments[2] === 'team' && newLocale === 'fr') {
@@ -22,6 +22,10 @@ export function LocaleSwitcher() {
       segments[2] = 'methodology';
     } else if (segments[2] === 'methodology' && newLocale === 'fr') {
       segments[2] = 'methodologie';
+    } else if (segments[2] === 'confidentialite' && newLocale === 'en') {
+      segments[2] = 'privacy';
+    } else if (segments[2] === 'privacy' && newLocale === 'fr') {
+      segments[2] = 'confidentialite';
     }
 
     router.push(segments.join('/'));

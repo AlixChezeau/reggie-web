@@ -73,6 +73,7 @@
     "light": "Clair",
     "language": "Langue",
     "methodology": "Comment ça marche ?",
+    "privacy": "Confidentialité",
     "copyright": "© 2025 Reggie. Tous droits réservés."
   },
   "methodology": {
@@ -127,5 +128,91 @@
     "cold": "Froid",
     "average": "Moyen",
     "hot": "Chaud"
+  },
+  "privacy": {
+    "title": "Politique de confidentialité",
+    "description": "Découvrez comment Reggie protège vos données personnelles sur le site web et l'application mobile.",
+    "lastUpdated": "Dernière mise à jour",
+    "lastUpdatedDate": "30 décembre 2024",
+    "intro": "Reggie est un service qui vous aide à découvrir quels matchs NBA valent le coup d'être regardés, sans spoilers. Cette politique de confidentialité explique comment nous collectons, utilisons et protégeons vos informations sur notre site web et notre application mobile.",
+    "editor": {
+      "title": "Éditeur",
+      "name": "Nom",
+      "contact": "Contact"
+    },
+    "dataCollected": {
+      "title": "Données collectées",
+      "website": {
+        "title": "Site web (reggie.app)",
+        "noPersonalData": "Aucune donnée personnelle collectée",
+        "noAccount": "Aucun compte utilisateur requis",
+        "theme": "Préférence de thème (clair/sombre) - stockée localement dans votre navigateur",
+        "language": "Préférence de langue - stockée localement dans votre navigateur"
+      },
+      "mobile": {
+        "title": "Application mobile",
+        "favoriteTeam": "Équipe favorite - stockée localement sur votre appareil",
+        "theme": "Préférence de thème (clair/sombre) - stockée localement sur votre appareil",
+        "language": "Préférence de langue - stockée localement sur votre appareil",
+        "systemLanguage": "Langue système de l'appareil - détectée automatiquement pour définir la langue par défaut"
+      }
+    },
+    "dataNotCollected": {
+      "title": "Données NON collectées",
+      "personalInfo": "Aucune information personnelle (nom, email, téléphone, adresse)",
+      "location": "Aucune donnée de géolocalisation",
+      "advertisingId": "Aucun identifiant publicitaire",
+      "biometric": "Aucune donnée biométrique",
+      "browsingHistory": "Aucun historique de navigation",
+      "analytics": "Aucun analytics ou tracking comportemental"
+    },
+    "cookies": {
+      "title": "Cookies et technologies similaires",
+      "website": "Site web : Nous n'utilisons aucun cookie (ni fonctionnel, ni analytique, ni publicitaire).",
+      "mobile": "Application mobile : Pas de cookies. Le stockage local utilise uniquement AsyncStorage pour vos préférences."
+    },
+    "thirdParty": {
+      "title": "Services tiers",
+      "supabase": "Héberge les données publiques NBA (matchs, équipes, analyses, classements). Aucune donnée utilisateur personnelle n'est stockée sur Supabase.",
+      "expo": "Service de build et déploiement pour l'application mobile. Aucune donnée utilisateur n'est transmise à Expo."
+    },
+    "legalBasis": {
+      "title": "Base légale du traitement (RGPD)",
+      "legitimateInterest": "Intérêt légitime pour le fonctionnement des services",
+      "consent": "Consentement implicite pour les préférences locales (thème, langue, équipe favorite)"
+    },
+    "dataRetention": {
+      "title": "Conservation des données",
+      "preferences": "Préférences locales : conservées jusqu'à ce que vous les supprimiez ou désinstalliez l'application",
+      "nbaData": "Données NBA : maintenues pour le fonctionnement du service (données publiques)"
+    },
+    "userRights": {
+      "title": "Vos droits (RGPD)",
+      "intro": "Conformément au Règlement Général sur la Protection des Données (RGPD), vous disposez des droits suivants :",
+      "access": "Droit d'accès à vos données",
+      "rectification": "Droit de rectification",
+      "erasure": "Droit à l'effacement",
+      "portability": "Droit à la portabilité",
+      "objection": "Droit d'opposition",
+      "note": "Comme nous ne collectons aucune donnée personnelle, ces droits s'appliquent uniquement aux préférences stockées localement sur votre appareil, que vous pouvez supprimer directement via les paramètres de votre navigateur ou de l'application."
+    },
+    "security": {
+      "title": "Sécurité",
+      "https": "Toutes les communications sont chiffrées via HTTPS",
+      "localStorage": "Le stockage local utilise les mécanismes sécurisés de votre appareil",
+      "noTransmission": "Aucune transmission de données personnelles vers nos serveurs"
+    },
+    "minors": {
+      "title": "Mineurs",
+      "content": "Nos services sont accessibles à tous les âges. Nous ne collectons pas de données spécifiques aux mineurs, ni aucune donnée personnelle en général."
+    },
+    "changes": {
+      "title": "Modifications de cette politique",
+      "content": "Nous pouvons mettre à jour cette politique de confidentialité occasionnellement. Les changements importants seront indiqués par une mise à jour de la date en haut de cette page."
+    },
+    "contact": {
+      "title": "Contact",
+      "content": "Pour toute question concernant cette politique de confidentialité ou vos données, vous pouvez nous contacter :"
+    }
   }
 }

@@ -63,12 +63,20 @@ export function Footer() {
           {/* Links */}
           <div>
             <h3 className="text-sm font-semibold text-foreground mb-4">Links</h3>
-            <Link
-              href={`/${locale}/${locale === 'fr' ? 'methodologie' : 'methodology'}`}
-              className="text-foreground-secondary hover:text-primary transition-colors text-sm"
-            >
-              {t('methodology')}
-            </Link>
+            <div className="flex flex-col gap-2">
+              <Link
+                href={`/${locale}/${locale === 'fr' ? 'methodologie' : 'methodology'}`}
+                className="text-foreground-secondary hover:text-primary transition-colors text-sm"
+              >
+                {t('methodology')}
+              </Link>
+              <Link
+                href={`/${locale}/${locale === 'fr' ? 'confidentialite' : 'privacy'}`}
+                className="text-foreground-secondary hover:text-primary transition-colors text-sm"
+              >
+                {t('privacy')}
+              </Link>
+            </div>
           </div>
         </div>
 
