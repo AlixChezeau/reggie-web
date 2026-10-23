@@ -61,7 +61,7 @@ export const privacy: Record<'fr' | 'en', PrivacyContent> = {
       {
         title: 'Où vont les données',
         items: [
-          'Supabase, notre base de données : les données NBA, tes préférences de notification et les votes.',
+          'Supabase, notre base de données, hébergée en Irlande (Union européenne) : les données NBA, tes préférences de notification et les votes.',
           'Firebase, de Google : l’envoi des notifications et, si tu l’acceptes, les statistiques d’usage.',
           'Vercel : l’hébergement du site.',
         ],
@@ -123,7 +123,7 @@ export const privacy: Record<'fr' | 'en', PrivacyContent> = {
       {
         title: 'Where the data goes',
         items: [
-          'Supabase, our database: NBA data, notification preferences and votes.',
+          'Supabase, our database, hosted in Ireland (European Union): NBA data, notification preferences and votes.',
           'Firebase, by Google: sending notifications and, if you allow it, usage statistics.',
           'Vercel: website hosting.',
         ],
