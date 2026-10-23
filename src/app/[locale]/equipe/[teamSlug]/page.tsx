@@ -1,12 +1,13 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { getTranslations } from 'next-intl/server';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { getTeamBySlug, NBA_TEAMS } from '@/constants/teams';
 import { TeamHeader } from '@/components/team/TeamHeader';
-import { MatchesList } from '@/components/team/MatchesList';
-import { TeamPageClient } from './TeamPageClient';
+import { MatchRow } from '@/components/night/MatchRow';
+import { AppStoreButton } from '@/components/ui/AppStoreButton';
 import { getTeamMatches } from '@/lib/supabase/queries';
 import { generateTeamJsonLd } from '@/lib/seo/jsonld';
+import { routes } from '@/lib/routes';
 
 export const revalidate = 3600; // Revalidate every hour
 
@@ -24,64 +25,54 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale, teamSlug } = await params;
   const team = getTeamBySlug(teamSlug);
+  if (!team) return {};
 
-  if (!team) {
-    return { title: 'Team not found' };
-  }
-
-  const title = locale === 'fr'
-    ? `${team.city} ${team.name} - Toutes les analyses | Reggie`
-    : `${team.city} ${team.name} - All Analysis | Reggie`;
-
+  const title = `${team.city} ${team.name}`;
   const description = locale === 'fr'
-    ? `Découvrez toutes les analyses de matchs des ${team.city} ${team.name}. Notes, résumés et recommandations sans spoilers.`
-    : `Discover all game analysis for the ${team.city} ${team.name}. Ratings, summaries and spoiler-free recommendations.`;
+    ? `Les matchs des ${team.city} ${team.name} à revoir, sans spoil : le verdict de Reggie pour chacun.`
+    : `${team.city} ${team.name} games worth rewatching, spoiler-free: Reggie's verdict on each one.`;
 
   return {
     title,
     description,
     alternates: {
-      canonical: `/${locale}/${locale === 'fr' ? 'equipe' : 'team'}/${teamSlug}`,
-      languages: {
-        fr: `/fr/equipe/${teamSlug}`,
-        en: `/en/team/${teamSlug}`,
-      },
+      canonical: routes.team(locale as 'fr' | 'en', teamSlug),
+      languages: { fr: routes.team('fr', teamSlug), en: routes.team('en', teamSlug) },
     },
   };
 }
 
+/** Les matchs d'une équipe, du plus récent au plus ancien : verdicts seulement, jamais de score. */
 export default async function TeamPage({ params }: Props) {
-  const { locale, teamSlug } = await params;
+  const { locale: rawLocale, teamSlug } = await params;
+  const locale = rawLocale as 'fr' | 'en';
+  setRequestLocale(locale);
   const team = getTeamBySlug(teamSlug);
-
-  if (!team) {
-    notFound();
-  }
+  if (!team) notFound();
 
   const t = await getTranslations('team');
-  const matches = await getTeamMatches(team.abbreviation, 50);
-  const jsonLd = generateTeamJsonLd(team.name, team.city);
+  const tHome = await getTranslations('home');
+  const matches = await getTeamMatches(team.abbreviation, 30);
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
-
-      <div className="max-w-4xl mx-auto px-4">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(generateTeamJsonLd(team.name, team.city)) }} />
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 pb-4 flex flex-col gap-6">
         <TeamHeader team={team} />
-
-        <TeamPageClient
-          matches={matches}
-          locale={locale as 'fr' | 'en'}
-          labels={{
-            allMatches: t('allMatches'),
-            filterRecent: t('filterRecent'),
-            filterBest: t('filterBest'),
-            noMatches: t('noMatches'),
-          }}
-        />
+        <h2 className="text-xs font-bold uppercase tracking-[0.14em] text-foreground-secondary">{t('allMatches')}</h2>
+        {matches.length === 0 ? (
+          <p className="text-foreground-secondary">{t('noMatches')}</p>
+        ) : (
+          <div className="flex flex-col gap-2.5">
+            {matches.map((match) => (
+              <MatchRow key={match.id} match={match} locale={locale} withText showDate />
+            ))}
+          </div>
+        )}
+        <section className="rounded-3xl bg-surface border border-card-border p-6 flex flex-col sm:flex-row sm:items-center gap-4">
+          <p className="text-lg font-bold flex-1">{tHome('ctaTitle')}</p>
+          <AppStoreButton campaign="page-equipe" />
+        </section>
       </div>
     </>
   );

@@ -1,36 +1,37 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Reggie · site web
 
-## Getting Started
+Le site de Reggie, l'app qui dit quel match NBA revoir, sans spoil. Il pousse d'abord vers l'app
+(App Store en tête, aperçu de l'app), puis montre la dernière nuit en couleurs comme preuve.
 
-First, run the development server:
+**Règle absolue : jamais de spoil.** Aucune requête ne lit les scores. Les pages publiques montrent des
+verdicts (Épique · Immanquable · À voir · À zapper) et les matchs à venir. La note sur 10 et l'analyse
+d'après-match ne sont chargées qu'à la demande (« Fais-moi rêver », route `/api/fais-moi-rever/[slug]`).
+
+## Pages
+
+| Adresse | Contenu |
+|---|---|
+| `/fr`, `/en` | Accueil : l'app d'abord, la dernière nuit en preuve, les prochains matchs |
+| `/fr/nuit/[date]`, `/en/night/[date]` | Une nuit (date NBA, heure de New York) ; `/fr/nuit` renvoie vers la dernière |
+| `/[langue]/match/[affiche]` | Un match, en Zéro spoil par défaut |
+| `/[langue]/tier-list` | Tier list des fans (aperçu : les votes ne sont pas encore enregistrés) |
+| `/fr/methodologie`, `/en/methodology` | Comment Reggie note |
+| `/fr/equipes`, `/fr/equipe/[équipe]` (et `/en/teams`, `/en/team/…`) | Les équipes et leurs verdicts |
+| `/fr/confidentialite`, `/en/privacy` | Confidentialité |
+
+## Lancer en local
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+cp .env.example .env.local   # puis remplir l'URL et la clé publishable Supabase
+npm install
+npm run dev                  # http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Le site ne lit que des données publiques avec la clé **publishable** de Supabase
+(`NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`). Jamais de clé secrète dans ce dépôt public ni dans Vercel.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Stack
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Next.js 16 (App Router), next-intl (français et anglais US), Tailwind CSS 4, Supabase en lecture seule.
+Les couleurs, le lexique et le format conseillé suivent l'app (`constants/theme.ts`, `lib/zeroSpoil.ts`,
+`lib/watchFormat.ts` du dépôt reggie-mobile) ; les logos viennent de `assets/brand/` de l'app.

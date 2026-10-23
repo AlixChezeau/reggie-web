@@ -1,133 +1,181 @@
 {
   "metadata": {
-    "title": "Reggie - Guide NBA sans spoilers",
-    "description": "Découvrez quels matchs NBA valent le coup d'être regardés, sans spoilers. Analyses pré et post-match pour les fans de basket."
+    "title": "Reggie · Les matchs NBA à revoir, sans spoil",
+    "description": "Chaque matin, un verdict en couleur pour chaque match NBA de la nuit : Épique, Immanquable, À voir ou À zapper. Jamais un score. L'app est gratuite sur iPhone."
   },
   "nav": {
-    "news": "Actus",
-    "today": "Aujourd'hui",
-    "standings": "Classement",
+    "night": "La nuit",
+    "how": "Comment ça marche",
+    "tierList": "Tier list",
+    "methodology": "Méthode",
     "teams": "Équipes",
-    "methodology": "Méthodologie"
+    "install": "Installer l'app",
+    "installShort": "Installer",
+    "menu": "Ouvrir le menu",
+    "closeMenu": "Fermer le menu",
+    "home": "Reggie, accueil"
   },
-  "teams": {
-    "title": "Équipes NBA",
-    "pageTitle": "Équipes NBA | Reggie",
-    "pageDescription": "Découvrez toutes les équipes NBA et leurs analyses de matchs sur Reggie.",
-    "eastern": "Conférence Est",
-    "western": "Conférence Ouest"
+  "appStore": {
+    "line1": "Télécharger dans",
+    "line2": "l'App Store",
+    "a11y": "Télécharger Reggie sur l'App Store",
+    "free": "Gratuit · iPhone"
+  },
+  "verdict": {
+    "tip": {
+      "full": "Conseil : le match en entier",
+      "condensed": "Conseil : la version condensée",
+      "highlights": "Conseil : le résumé suffit"
+    },
+    "preMatch": "Avant-match",
+    "postMatch": "Après-match",
+    "pending": "Verdict demain matin"
   },
   "home": {
-    "latestNews": "Dernières actus",
-    "todayMatches": "Matchs du jour",
-    "standings": "Classement",
-    "noMatchesToday": "Pas de matchs aujourd'hui",
-    "noYesterdayMatches": "Pas de matchs analysés hier"
+    "tagline": "Watch smart. No spoilers.",
+    "title": "Le bon replay NBA, chaque matin",
+    "intro": "Pendant que tu dors, Reggie suit tous les matchs. Au réveil, un verdict en couleur pour chacun. Jamais un score.",
+    "phoneTitle": "La nuit en couleurs · {count, plural, one {# match} other {# matchs}}",
+    "proofKicker": "Ce matin, sur Reggie",
+    "proofQuestion": "{count, plural, one {Un match. Tu le revois ?} other {# matchs. Lequel tu revois ?}}",
+    "seeNight": "Voir toute la nuit",
+    "noNight": "Les verdicts de la nuit arrivent ici chaque matin.",
+    "howTitle": "Comment ça marche",
+    "how1Title": "Les matchs se jouent la nuit",
+    "how1Text": "Entre minuit et 4 h 30, heure de Paris. Le matin, il faut choisir quoi revoir.",
+    "how2Title": "Un verdict, pas un score",
+    "how2Text": "Épique, Immanquable, À voir ou À zapper. Rien sur le vainqueur.",
+    "how3Title": "Le bon format",
+    "how3Text": "En entier, condensé ou en résumé : Reggie te conseille, et te dit où le regarder.",
+    "verdictsTitle": "Quatre verdicts, deux façons de lire",
+    "zeroTitle": "Zéro spoil",
+    "zeroText": "Le verdict et le format conseillé. Rien d'autre.",
+    "dreamTitle": "Fais-moi rêver",
+    "dreamText": "La note sur 10 et l'analyse, toujours sans le score.",
+    "tonightTitle": "Les prochains matchs",
+    "tonightNote": "Verdict le lendemain matin, sans spoil.",
+    "appTitle": "Dans l'app",
+    "feat1Title": "Le verdict à ton heure",
+    "feat1Text": "Une notification le matin, à l'heure que tu choisis.",
+    "feat2Title": "Des widgets",
+    "feat2Text": "La nuit en couleurs sur ton écran d'accueil.",
+    "feat3Title": "Devine le verdict",
+    "feat3Text": "Une affiche par soir, la réponse le lendemain matin.",
+    "feat4Title": "Où regarder",
+    "feat4Text": "League Pass, Prime Video ou beIN Sports : l'app te dit où trouver chaque match.",
+    "faqTitle": "Questions fréquentes",
+    "q1": "C'est gratuit ?",
+    "a1": "Oui, l'app est gratuite.",
+    "q2": "Pourquoi jamais de score ?",
+    "a2": "Parce que tu vas peut-être regarder le match. Reggie te dit s'il vaut le coup, jamais comment il finit.",
+    "q3": "Et sur Android ?",
+    "a3": "Pas encore : Reggie est sur iPhone pour l'instant.",
+    "q4": "Reggie est lié à la NBA ?",
+    "a4": "Non. Reggie n'est affilié ni à la NBA ni à ses équipes.",
+    "ctaTitle": "Demain matin, le verdict t'attend"
+  },
+  "night": {
+    "kicker": "La nuit en couleurs",
+    "question": "{count, plural, one {Un match. Tu le revois ?} other {# matchs. Lequel tu revois ?}}",
+    "upcoming": "{count, plural, one {Un match au programme.} other {# matchs au programme.}} Verdict le lendemain matin.",
+    "previous": "Nuit précédente",
+    "next": "Nuit suivante",
+    "empty": "Pas de match NBA cette nuit-là.",
+    "metaDescription": "{title} : le verdict de chaque match NBA, sans spoil. Épique, Immanquable, À voir ou À zapper."
   },
   "match": {
-    "vs": "VS",
-    "scheduled": "Programmé",
+    "back": "Toute la nuit",
+    "kickoff": "Coup d'envoi",
     "inProgress": "En cours",
-    "finished": "Terminé",
-    "analyzing": "Analyse en cours...",
-    "viewAnalysis": "Voir l'analyse",
-    "hideAnalysis": "Masquer l'analyse",
-    "relatedMatches": "Dernières analyses",
-    "upcomingMatches": "Prochains matchs",
-    "bestFor": "Pour"
-  },
-  "analysis": {
-    "breakdown": "Détail du score",
-    "stakes": "Enjeux",
+    "pending": "Le match est terminé : le verdict arrive dans la matinée.",
+    "dreamCtaTitle": "Tu en veux un peu plus ?",
+    "dreamCtaText": "La note sur 10 et l'analyse complète. Toujours sans le score.",
+    "dreamButton": "Fais-moi rêver",
+    "zeroButton": "Revenir en Zéro spoil",
+    "rating": "Note",
+    "bestFor": "Pour",
+    "criteria": "Le détail de la note",
+    "stakes": "Enjeu",
     "starPower": "Stars",
-    "recentForm": "Forme récente",
+    "recentForm": "Forme",
     "performances": "Performances",
-    "clutch": "Clutch",
-    "gameDynamics": "Dynamique du match",
-    "pace": "Rythme",
-    "physicality": "Physique",
-    "shooting": "Tir",
-    "standoutPlayers": "Joueurs remarquables",
-    "keyFactors": "Points clés"
+    "suspense": "Suspense",
+    "relatedMatches": "Leurs derniers verdicts",
+    "upcomingMatches": "Leurs prochains matchs",
+    "appTitle": "Ce soir, devine le verdict",
+    "appText": "Une affiche par soir, la réponse le lendemain matin. Le jeu est dans l'app.",
+    "metaDescription": "{teams} : le verdict de Reggie, sans spoil. {verdict}.",
+    "dreamError": "Impossible de charger l'analyse. Réessaie dans un instant."
   },
-  "standings": {
-    "east": "Est",
-    "west": "Ouest",
-    "rank": "#",
-    "team": "Équipe",
-    "wins": "V",
-    "losses": "D",
-    "pct": "%",
-    "last10": "10 derniers",
-    "streak": "Série"
+  "tierList": {
+    "kicker": "Le vote des fans",
+    "title": "La tier list NBA",
+    "intro": "Tu fais monter qui ? Un vote par joueur et par jour. Chaque dimanche, le classement part sur Instagram.",
+    "demo": "Aperçu : les votes ne sont pas encore enregistrés et le classement affiché est un exemple.",
+    "up": "Faire monter {name}",
+    "down": "Faire descendre {name}",
+    "yourVotes": "Tes votes du jour : {count}",
+    "howTitle": "Comment ça marche",
+    "howText": "Chaque vote fait monter ou descendre un joueur, et les paliers se recalculent. Le dimanche, le classement est figé et publié sur Instagram.",
+    "trendUp": "monte de {count}",
+    "trendDown": "descend de {count}",
+    "trendSame": "stable",
+    "metaDescription": "La tier list NBA des fans : fais monter ou descendre les joueurs. Publiée chaque dimanche."
   },
   "team": {
-    "allMatches": "Tous les matchs",
-    "filterRecent": "Plus récents",
-    "filterBest": "Meilleures notes",
-    "noMatches": "Aucun match analysé"
+    "allMatches": "Ses matchs",
+    "noMatches": "Aucun verdict pour l'instant"
   },
   "footer": {
     "theme": "Thème",
+    "system": "Auto",
     "dark": "Sombre",
     "light": "Clair",
     "language": "Langue",
-    "methodology": "Comment ça marche ?",
+    "links": "Reggie",
+    "methodology": "Comment Reggie note",
     "privacy": "Confidentialité",
-    "copyright": "© 2025 Reggie. Tous droits réservés."
+    "teams": "Équipes",
+    "tierList": "Tier list",
+    "disclaimer": "Reggie n'est affilié ni à la NBA ni à ses équipes.",
+    "copyright": "© 2026 Reggie"
   },
   "methodology": {
-    "title": "Comment ça marche ?",
-    "intro": "Reggie analyse chaque match NBA pour vous dire lesquels valent vraiment le coup d'être regardés, sans jamais spoiler le résultat.",
-    "prematch": {
-      "title": "Analyse pré-match",
-      "subtitle": "Avant le match, on évalue son potentiel sur 3 critères :",
-      "stakes": {
-        "label": "Enjeux",
-        "description": "Impact sur le classement, rivalités historiques, importance de la rencontre."
-      },
-      "stars": {
-        "label": "Stars",
-        "description": "Présence de joueurs vedettes et qualité des duels attendus."
-      },
-      "form": {
-        "label": "Forme récente",
-        "description": "Dynamique des équipes sur les 10 derniers matchs."
-      }
-    },
-    "postmatch": {
-      "title": "Analyse post-match",
-      "subtitle": "Après le match, on évalue ce qui s'est vraiment passé :",
-      "stakes": {
-        "label": "Enjeux",
-        "description": "Contexte et importance confirmés du match."
-      },
-      "stars": {
-        "label": "Stars",
-        "description": "Impact réel des joueurs vedettes."
-      },
-      "performances": {
-        "label": "Performances",
-        "description": "Statistiques et exploits individuels marquants."
-      },
-      "clutch": {
-        "label": "Clutch",
-        "description": "Suspense, finish serré, moments décisifs."
-      }
-    },
-    "total": "Total",
-    "footer": "Les notes vont de 0 à 100. Au-dessus de 80, c'est épique. Entre 70-80, c'est un must watch. Entre 50-70, ça vaut le coup. En dessous de 50, vous pouvez passer."
+    "title": "Comment Reggie note",
+    "intro": "Chaque match reçoit une note sur 10 et un verdict. Le score, lui, n'apparaît jamais.",
+    "verdictsTitle": "Quatre verdicts",
+    "epic": "8 et plus. Le plus rare : celui-là, tu le revois en entier.",
+    "mustWatch": "De 7 à 7,9. Un très bon match, à ne pas laisser passer.",
+    "worthIt": "De 5 à 6,9. Un bon moment, si tu as le temps.",
+    "skip": "Moins de 5. Tu peux passer ton tour.",
+    "postTitle": "Après le match",
+    "postIntro": "Quatre critères, calculés sur les données du match.",
+    "suspense": "Suspense",
+    "suspenseText": "L'écart en fin de match, les changements de leader, les retours, une éventuelle prolongation.",
+    "stakes": "Enjeu",
+    "stakesText": "La place des deux équipes, les rivalités, les playoffs et la NBA Cup.",
+    "performances": "Performances",
+    "performancesText": "Les grosses soirées individuelles.",
+    "stars": "Stars",
+    "starsText": "Les stars qui ont vraiment joué.",
+    "preTitle": "Avant le match",
+    "preIntro": "Une promesse, pas un verdict : on note ce que l'affiche annonce.",
+    "preStakes": "Enjeu",
+    "preForm": "Forme des deux équipes",
+    "preStars": "Stars attendues",
+    "earlySeason": "En début de saison, avant 10 matchs, on ne parle ni de forme ni de classement : trop tôt pour en tirer quoi que ce soit.",
+    "points": "{value} pts",
+    "aiTitle": "Qui écrit les textes ?",
+    "aiText": "Les chiffres viennent des données officielles des matchs. Une IA rédige les textes à partir de ces chiffres, avec une règle simple : en Zéro spoil, rien qui trahisse le résultat.",
+    "limitsTitle": "Les limites",
+    "limitsText": "Une note reste un avis. Un match À voir entre tes deux équipes préférées peut te plaire plus qu'un Épique : c'est ton replay."
   },
-  "dynamics": {
-    "slow": "Lent",
-    "medium": "Modéré",
-    "fast": "Rapide",
-    "soft": "Soft",
-    "moderate": "Modéré",
-    "intense": "Intense",
-    "cold": "Froid",
-    "average": "Moyen",
-    "hot": "Chaud"
+  "teams": {
+    "title": "Équipes NBA",
+    "pageTitle": "Équipes NBA",
+    "pageDescription": "Découvrez toutes les équipes NBA et leurs analyses de matchs sur Reggie.",
+    "eastern": "Conférence Est",
+    "western": "Conférence Ouest"
   },
   "privacy": {
     "title": "Politique de confidentialité",

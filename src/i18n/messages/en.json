@@ -1,133 +1,181 @@
 {
   "metadata": {
-    "title": "Reggie - Spoiler-Free NBA Guide",
-    "description": "Find out which NBA games are worth watching, spoiler-free. Pre and post-game analysis for basketball fans."
+    "title": "Reggie · NBA games worth rewatching. No spoilers.",
+    "description": "Every morning, a color-coded verdict for every NBA game from last night: Epic, Must-watch, Worth it or Skip it. Never a score. Free on iPhone."
   },
   "nav": {
-    "news": "News",
-    "today": "Today",
-    "standings": "Standings",
+    "night": "Last night",
+    "how": "How it works",
+    "tierList": "Tier list",
+    "methodology": "Ratings",
     "teams": "Teams",
-    "methodology": "Methodology"
+    "install": "Get the app",
+    "installShort": "Get the app",
+    "menu": "Open menu",
+    "closeMenu": "Close menu",
+    "home": "Reggie home"
   },
-  "teams": {
-    "title": "NBA Teams",
-    "pageTitle": "NBA Teams | Reggie",
-    "pageDescription": "Explore all NBA teams and their game analyses on Reggie.",
-    "eastern": "Eastern Conference",
-    "western": "Western Conference"
+  "appStore": {
+    "line1": "Download on the",
+    "line2": "App Store",
+    "a11y": "Download Reggie on the App Store",
+    "free": "Free · iPhone"
+  },
+  "verdict": {
+    "tip": {
+      "full": "Tip: watch the full game",
+      "condensed": "Tip: the condensed game is enough",
+      "highlights": "Tip: highlights are enough"
+    },
+    "preMatch": "Pre-game",
+    "postMatch": "Post-game",
+    "pending": "Verdict tomorrow morning"
   },
   "home": {
-    "latestNews": "Latest News",
-    "todayMatches": "Today's Games",
-    "standings": "Standings",
-    "noMatchesToday": "No games today",
-    "noYesterdayMatches": "No analyzed games yesterday"
+    "tagline": "Watch smart. No spoilers.",
+    "title": "The right NBA replay, every morning",
+    "intro": "Reggie follows every NBA game. The next morning, each one gets a color-coded verdict, so you know what to rewatch. Never a score.",
+    "phoneTitle": "Last night in colors · {count, plural, one {# game} other {# games}}",
+    "proofKicker": "This morning on Reggie",
+    "proofQuestion": "{count, plural, one {One game. Worth a rewatch?} other {# games. Which one will you rewatch?}}",
+    "seeNight": "See the whole night",
+    "noNight": "Last night's verdicts land here every morning.",
+    "howTitle": "How it works",
+    "how1Title": "Games end late",
+    "how1Text": "Most tip off between 7 and 10:30 PM ET. The next day, you have to pick what to rewatch.",
+    "how2Title": "A verdict, not a score",
+    "how2Text": "Epic, Must-watch, Worth it or Skip it. Nothing about who won.",
+    "how3Title": "The right format",
+    "how3Text": "Full game, condensed or highlights: Reggie tells you which, and where to watch it.",
+    "verdictsTitle": "Four verdicts, two ways to read them",
+    "zeroTitle": "Zero spoilers",
+    "zeroText": "The verdict and the recommended format. Nothing else.",
+    "dreamTitle": "Hype me up",
+    "dreamText": "The rating out of 10 and the full take, never the final score.",
+    "tonightTitle": "Coming up",
+    "tonightNote": "Verdict the next morning, spoiler-free.",
+    "appTitle": "In the app",
+    "feat1Title": "Your verdict, your time",
+    "feat1Text": "A morning notification at the time you pick.",
+    "feat2Title": "Widgets",
+    "feat2Text": "Last night in colors on your Home Screen.",
+    "feat3Title": "Guess the verdict",
+    "feat3Text": "One game a night, the answer the next morning.",
+    "feat4Title": "Where to watch",
+    "feat4Text": "The app tells you where to find every game.",
+    "faqTitle": "FAQ",
+    "q1": "Is it free?",
+    "a1": "Yes, the app is free.",
+    "q2": "Why no scores?",
+    "a2": "Because you might watch the game. Reggie tells you if it's worth it, never how it ends.",
+    "q3": "What about Android?",
+    "a3": "Not yet: Reggie is iPhone-only for now.",
+    "q4": "Is Reggie affiliated with the NBA?",
+    "a4": "No. Reggie is not affiliated with the NBA or its teams.",
+    "ctaTitle": "Tomorrow morning, your verdict is waiting"
+  },
+  "night": {
+    "kicker": "Last night in colors",
+    "question": "{count, plural, one {One game. Worth a rewatch?} other {# games. Which one will you rewatch?}}",
+    "upcoming": "{count, plural, one {One game on the schedule.} other {# games on the schedule.}} Verdicts the next morning.",
+    "previous": "Previous night",
+    "next": "Next night",
+    "empty": "No NBA games that night.",
+    "metaDescription": "{title}: Reggie's verdict on every NBA game, spoiler-free. Epic, Must-watch, Worth it or Skip it."
   },
   "match": {
-    "vs": "VS",
-    "scheduled": "Scheduled",
-    "inProgress": "In Progress",
-    "finished": "Final",
-    "analyzing": "Analyzing...",
-    "viewAnalysis": "View analysis",
-    "hideAnalysis": "Hide analysis",
-    "relatedMatches": "Recent Analysis",
-    "upcomingMatches": "Upcoming Games",
-    "bestFor": "Best for"
-  },
-  "analysis": {
-    "breakdown": "Score Breakdown",
+    "back": "The whole night",
+    "kickoff": "Tip-off",
+    "inProgress": "Live",
+    "pending": "The game is over: the verdict lands later this morning.",
+    "dreamCtaTitle": "Want a little more?",
+    "dreamCtaText": "The rating out of 10 and the full take. Never the final score.",
+    "dreamButton": "Hype me up",
+    "zeroButton": "Back to Zero spoilers",
+    "rating": "Rating",
+    "bestFor": "For",
+    "criteria": "How the rating breaks down",
     "stakes": "Stakes",
-    "starPower": "Star Power",
-    "recentForm": "Recent Form",
+    "starPower": "Stars",
+    "recentForm": "Form",
     "performances": "Performances",
-    "clutch": "Clutch Factor",
-    "gameDynamics": "Game Dynamics",
-    "pace": "Pace",
-    "physicality": "Physical",
-    "shooting": "Shooting",
-    "standoutPlayers": "Standout Players",
-    "keyFactors": "Key Factors"
+    "suspense": "Suspense",
+    "relatedMatches": "Their latest verdicts",
+    "upcomingMatches": "Their next games",
+    "appTitle": "Tonight, guess the verdict",
+    "appText": "One game a night, the answer the next morning. The game lives in the app.",
+    "metaDescription": "{teams}: Reggie's spoiler-free verdict. {verdict}.",
+    "dreamError": "Couldn't load the take. Try again in a moment."
   },
-  "standings": {
-    "east": "East",
-    "west": "West",
-    "rank": "#",
-    "team": "Team",
-    "wins": "W",
-    "losses": "L",
-    "pct": "PCT",
-    "last10": "L10",
-    "streak": "Streak"
+  "tierList": {
+    "kicker": "The fans' vote",
+    "title": "The NBA tier list",
+    "intro": "Who's moving up? One vote per player per day. Every Sunday, the rankings go out on Instagram.",
+    "demo": "Preview: votes aren't saved yet, and the rankings shown are an example.",
+    "up": "Move {name} up",
+    "down": "Move {name} down",
+    "yourVotes": "Your votes today: {count}",
+    "howTitle": "How it works",
+    "howText": "Every vote moves a player up or down, and the tiers update. On Sunday, the rankings are locked and posted on Instagram.",
+    "trendUp": "up {count}",
+    "trendDown": "down {count}",
+    "trendSame": "no change",
+    "metaDescription": "The fans' NBA tier list: move players up or down. Posted every Sunday."
   },
   "team": {
-    "allMatches": "All Games",
-    "filterRecent": "Most Recent",
-    "filterBest": "Best Rated",
-    "noMatches": "No analyzed games"
+    "allMatches": "Their games",
+    "noMatches": "No verdicts yet"
   },
   "footer": {
     "theme": "Theme",
+    "system": "Auto",
     "dark": "Dark",
     "light": "Light",
     "language": "Language",
-    "methodology": "How it works",
-    "privacy": "Privacy Policy",
-    "copyright": "© 2025 Reggie. All rights reserved."
+    "links": "Reggie",
+    "methodology": "How Reggie rates games",
+    "privacy": "Privacy",
+    "teams": "Teams",
+    "tierList": "Tier list",
+    "disclaimer": "Reggie is not affiliated with the NBA or its teams.",
+    "copyright": "© 2026 Reggie"
   },
   "methodology": {
-    "title": "How it works",
-    "intro": "Reggie analyzes every NBA game to tell you which ones are truly worth watching, without ever spoiling the result.",
-    "prematch": {
-      "title": "Pre-game Analysis",
-      "subtitle": "Before the game, we evaluate its potential on 3 criteria:",
-      "stakes": {
-        "label": "Stakes",
-        "description": "Impact on standings, historic rivalries, importance of the matchup."
-      },
-      "stars": {
-        "label": "Star Power",
-        "description": "Presence of star players and quality of expected matchups."
-      },
-      "form": {
-        "label": "Recent Form",
-        "description": "Team momentum over the last 10 games."
-      }
-    },
-    "postmatch": {
-      "title": "Post-game Analysis",
-      "subtitle": "After the game, we evaluate what actually happened:",
-      "stakes": {
-        "label": "Stakes",
-        "description": "Confirmed context and importance of the game."
-      },
-      "stars": {
-        "label": "Star Power",
-        "description": "Actual impact of star players."
-      },
-      "performances": {
-        "label": "Performances",
-        "description": "Outstanding individual statistics and feats."
-      },
-      "clutch": {
-        "label": "Clutch Factor",
-        "description": "Suspense, close finish, clutch moments."
-      }
-    },
-    "total": "Total",
-    "footer": "Scores range from 0 to 100. Above 80 is epic. Between 70-80 is a must watch. Between 50-70 is worth it. Below 50, you can skip."
+    "title": "How Reggie rates games",
+    "intro": "Every game gets a rating out of 10 and a verdict. The final score never shows up.",
+    "verdictsTitle": "Four verdicts",
+    "epic": "8 and up. The rarest one: watch the whole thing.",
+    "mustWatch": "7 to 7.9. A really good game. Don't let it slip by.",
+    "worthIt": "5 to 6.9. A good watch if you have the time.",
+    "skip": "Under 5. You can skip this one.",
+    "postTitle": "After the game",
+    "postIntro": "Four criteria, computed from the game data.",
+    "suspense": "Suspense",
+    "suspenseText": "The margin late in the game, lead changes, comebacks, overtime.",
+    "stakes": "Stakes",
+    "stakesText": "Where both teams stand, rivalries, the playoffs and the NBA Cup.",
+    "performances": "Performances",
+    "performancesText": "Big individual nights.",
+    "stars": "Stars",
+    "starsText": "The stars who actually played.",
+    "preTitle": "Before the game",
+    "preIntro": "A promise, not a verdict: we rate what the matchup has to offer.",
+    "preStakes": "Stakes",
+    "preForm": "Both teams' form",
+    "preStars": "Expected stars",
+    "earlySeason": "Early in the season, before 10 games, we leave form and standings out: too soon to read anything into them.",
+    "points": "{value} pts",
+    "aiTitle": "Who writes the text?",
+    "aiText": "The numbers come from official game data. An AI writes the text from those numbers, with one simple rule: in Zero spoilers mode, nothing that gives away the result.",
+    "limitsTitle": "The limits",
+    "limitsText": "A rating is still an opinion. A Worth it game between your two favorite teams might beat an Epic one for you: it's your replay."
   },
-  "dynamics": {
-    "slow": "Slow",
-    "medium": "Medium",
-    "fast": "Fast",
-    "soft": "Soft",
-    "moderate": "Moderate",
-    "intense": "Intense",
-    "cold": "Cold",
-    "average": "Average",
-    "hot": "Hot"
+  "teams": {
+    "title": "NBA Teams",
+    "pageTitle": "NBA Teams",
+    "pageDescription": "Explore all NBA teams and their game analyses on Reggie.",
+    "eastern": "Eastern Conference",
+    "western": "Western Conference"
   },
   "privacy": {
     "title": "Privacy Policy",

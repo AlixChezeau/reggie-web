@@ -1,4 +1,4 @@
-import { getTranslations } from 'next-intl/server';
+import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { Metadata } from 'next';
 
 type Props = {
@@ -7,6 +7,7 @@ type Props = {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;
+  setRequestLocale(locale);
   const t = await getTranslations('privacy');
 
   return {
@@ -44,7 +45,7 @@ export default async function PrivacyPage({ params }: Props) {
     <div className="max-w-3xl mx-auto px-4 py-12">
       <h1
         className="text-4xl font-bold text-primary mb-4"
-        style={{ fontFamily: 'var(--font-title)' }}
+        style={{ fontFamily: 'var(--font-bebas-neue)' }}
       >
         {t('title')}
       </h1>

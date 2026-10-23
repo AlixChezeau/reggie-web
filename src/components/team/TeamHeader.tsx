@@ -1,24 +1,17 @@
+import { getTranslations } from 'next-intl/server';
 import { Team } from '@/types';
 import { TeamLogo } from '@/components/ui/TeamLogo';
 
-interface TeamHeaderProps {
-  team: Team;
-}
-
-export function TeamHeader({ team }: TeamHeaderProps) {
+export async function TeamHeader({ team }: { team: Team }) {
+  const t = await getTranslations('teams');
   return (
-    <div className="flex items-center gap-6 py-8">
-      <TeamLogo team={team} size={96} />
+    <div className="flex items-center gap-5 py-8">
+      <TeamLogo team={team} size={88} />
       <div>
-        <h1
-          className="text-4xl font-bold text-foreground"
-          style={{ fontFamily: 'var(--font-title)' }}
-        >
+        <h1 className="font-title text-4xl md:text-5xl leading-none">
           {team.city} {team.name}
         </h1>
-        <p className="text-lg text-foreground-secondary">
-          {team.conference === 'East' ? 'Eastern Conference' : 'Western Conference'}
-        </p>
+        <p className="text-foreground-secondary mt-1">{team.conference === 'East' ? t('eastern') : t('western')}</p>
       </div>
     </div>
   );

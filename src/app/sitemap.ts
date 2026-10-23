@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next';
 import { NBA_TEAMS } from '@/constants/teams';
 import { getAllAnalyzedMatches } from '@/lib/supabase/queries';
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://reggie.app';
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://reggie-web.vercel.app';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const matches = await getAllAnalyzedMatches();
@@ -33,6 +33,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 0.8,
+    },
+    // Tier list
+    {
+      url: `${BASE_URL}/fr/tier-list`,
+      lastModified: new Date(),
+      changeFrequency: 'daily',
+      priority: 0.6,
+    },
+    {
+      url: `${BASE_URL}/en/tier-list`,
+      lastModified: new Date(),
+      changeFrequency: 'daily',
+      priority: 0.6,
     },
     // Methodology pages
     {

@@ -1,63 +1,35 @@
-import { getTranslations } from 'next-intl/server';
-import { HeroSection } from '@/components/home/HeroSection';
-import { TodayMatchesGrid } from '@/components/home/TodayMatchesGrid';
-import { StandingsSection } from '@/components/home/StandingsSection';
-import { getYesterdayMatches, getTodayMatches, getStandings } from '@/lib/supabase/queries';
+import { setRequestLocale } from 'next-intl/server';
+import { getLastNight, getNextNight } from '@/lib/supabase/queries';
+import { Hero, LastNightProof, HowItWorks, VerdictsAndComingUp, AppFeatures, FaqAndCta } from '@/components/home/HomeSections';
+import { generateWebsiteJsonLd } from '@/lib/seo/jsonld';
 
-export const revalidate = 300; // Revalidate every 5 minutes
+// Les verdicts arrivent dans la matinée : la page se régénère toutes les 5 minutes
+export const revalidate = 300;
 
 type Props = {
   params: Promise<{ locale: string }>;
 };
 
+/**
+ * Accueil « C+B » : l'app d'abord (promesse, App Store, aperçu), puis la dernière nuit
+ * en couleurs comme preuve. Aucun score, aucun vainqueur.
+ */
 export default async function HomePage({ params }: Props) {
-  const { locale } = await params;
-  const t = await getTranslations('home');
-  const tStandings = await getTranslations('standings');
+  const { locale: rawLocale } = await params;
+  const locale = rawLocale as 'fr' | 'en';
+  setRequestLocale(locale);
 
-  // Fetch data in parallel
-  const [yesterdayMatches, todayMatches, standings] = await Promise.all([
-    getYesterdayMatches(),
-    getTodayMatches(),
-    getStandings(),
-  ]);
+  const [lastNight, nextNight] = await Promise.all([getLastNight(), getNextNight()]);
 
   return (
-    <div className="min-h-screen">
-      {/* Hero Section - Yesterday's matches in Washington Post layout */}
-      <HeroSection
-        matches={yesterdayMatches}
-        locale={locale as 'fr' | 'en'}
-        title={t('latestNews')}
-        emptyMessage={t('noYesterdayMatches')}
-      />
-
-      {/* Today's Matches Grid */}
-      <TodayMatchesGrid
-        matches={todayMatches}
-        locale={locale as 'fr' | 'en'}
-        title={t('todayMatches')}
-        emptyMessage={t('noMatchesToday')}
-      />
-
-      {/* Standings Section */}
-      <StandingsSection
-        east={standings.east}
-        west={standings.west}
-        locale={locale as 'fr' | 'en'}
-        title={t('standings')}
-        labels={{
-          east: tStandings('east'),
-          west: tStandings('west'),
-          rank: tStandings('rank'),
-          team: tStandings('team'),
-          wins: tStandings('wins'),
-          losses: tStandings('losses'),
-          pct: tStandings('pct'),
-          last10: tStandings('last10'),
-          streak: tStandings('streak'),
-        }}
-      />
-    </div>
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(generateWebsiteJsonLd(locale)) }} />
+      <Hero lastNight={lastNight} locale={locale} />
+      <LastNightProof lastNight={lastNight} locale={locale} />
+      <HowItWorks />
+      <VerdictsAndComingUp nextNight={nextNight} locale={locale} />
+      <AppFeatures />
+      <FaqAndCta />
+    </>
   );
 }
