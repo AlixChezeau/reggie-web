@@ -1,12 +1,7 @@
 /**
- * Données de démonstration de la tier list.
- *
- * TODO (après validation d'Alix) : brancher les vrais votes.
- *   - une table Supabase de votes (joueur, sens, jour, empreinte anonyme du visiteur),
- *     écrite par une fonction serveur qui applique « un vote par joueur et par jour » ;
- *   - une vue qui calcule le score de chaque joueur sur la semaine ;
- *   - le dimanche, le classement est figé et l'image Instagram est générée.
- * Rien de tout cela n'existe encore : cette page n'écrit nulle part.
+ * Données de démonstration de la tier list : affichées seulement si la base ne répond pas
+ * (migration 034 pas encore appliquée, ou Supabase injoignable). Les vrais votes passent
+ * par tier_list_vote et le classement par tier_list_ranking (Reggie, migration 034).
  */
 export interface DemoPlayer {
   id: string;
@@ -33,10 +28,3 @@ export const DEMO_PLAYERS: DemoPlayer[] = [
 ];
 
 /** Paliers S à D et nombre de joueurs dans chacun (les couleurs ne sont jamais celles des verdicts) */
-export const TIERS = [
-  { name: 'S', size: 2, background: '#FFB400', color: '#0A0F1C' },
-  { name: 'A', size: 3, background: '#E5E7EB', color: '#0A0F1C' },
-  { name: 'B', size: 3, background: '#9CA3AF', color: '#0A0F1C' },
-  { name: 'C', size: 2, background: '#4B5563', color: '#F2F2F2' },
-  { name: 'D', size: 2, background: '#1F2937', color: '#F2F2F2' },
-];

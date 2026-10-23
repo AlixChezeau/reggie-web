@@ -119,7 +119,9 @@
     "trendUp": "up {count}",
     "trendDown": "down {count}",
     "trendSame": "no change",
-    "metaDescription": "The fans' NBA tier list: move players up or down. Posted every Sunday."
+    "metaDescription": "The fans' NBA tier list: move players up or down. Posted every Sunday.",
+    "errorGeneric": "Your vote didn't go through. Try again in a moment.",
+    "errorTooMany": "Too many votes from this connection today. Come back tomorrow."
   },
   "team": {
     "allMatches": "Their games",

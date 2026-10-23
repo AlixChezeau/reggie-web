@@ -1,4 +1,5 @@
 import { createClient } from './server';
+import type { TierPlayer } from '@/lib/tierList';
 import { Match, MatchAnalysis, Team } from '@/types';
 import { getTeamByAbbreviation } from '@/constants/teams';
 import { addDays, format } from 'date-fns';
@@ -283,4 +284,17 @@ export async function getAllAnalyzedMatches(): Promise<Match[]> {
   }
 
   return ((data || []) as unknown as DbGame[]).map(transformMatch).filter((m) => m.analysis);
+}
+
+/** Classement de la tier list des fans ; null si la base ne le fournit pas encore (migration 034) */
+export async function getTierListRanking(): Promise<TierPlayer[] | null> {
+  const supabase = createClient();
+  if (!supabase) return null;
+
+  const { data, error } = await supabase.rpc('tier_list_ranking');
+  if (error || !data?.length) {
+    if (error) console.error('Error fetching tier list:', error.message);
+    return null;
+  }
+  return data as TierPlayer[];
 }

@@ -119,7 +119,9 @@
     "trendUp": "monte de {count}",
     "trendDown": "descend de {count}",
     "trendSame": "stable",
-    "metaDescription": "La tier list NBA des fans : fais monter ou descendre les joueurs. Publiée chaque dimanche."
+    "metaDescription": "La tier list NBA des fans : fais monter ou descendre les joueurs. Publiée chaque dimanche.",
+    "errorGeneric": "Ton vote n'est pas passé. Réessaie dans un instant.",
+    "errorTooMany": "Trop de votes depuis cette connexion aujourd'hui. Reviens demain."
   },
   "team": {
     "allMatches": "Ses matchs",
