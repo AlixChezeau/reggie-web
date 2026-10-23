@@ -53,8 +53,12 @@ function TeamBlock({ team }: { team: Team }) {
   );
 }
 
-function dedupe(matches: Match[], limit: number): Match[] {
-  return matches.filter((m, i, arr) => arr.findIndex((x) => x.id === m.id) === i).slice(0, limit);
+/** Retire les doublons (match entre les deux équipes) et trie par date : order 1 = du plus proche au plus lointain */
+function dedupe(matches: Match[], limit: number, order: 1 | -1): Match[] {
+  return matches
+    .filter((m, i, arr) => arr.findIndex((x) => x.id === m.id) === i)
+    .sort((a, b) => order * a.scheduled_at.localeCompare(b.scheduled_at))
+    .slice(0, limit);
 }
 
 /**
@@ -81,8 +85,8 @@ export default async function MatchPage({ params }: Props) {
     getUpcomingMatches(match.away_team.abbreviation, 2),
     getUpcomingMatches(match.home_team.abbreviation, 2),
   ]);
-  const related = dedupe([...awayRelated, ...homeRelated], 4);
-  const upcoming = dedupe([...awayUpcoming, ...homeUpcoming], 4);
+  const related = dedupe([...awayRelated, ...homeRelated], 4, -1);
+  const upcoming = dedupe([...awayUpcoming, ...homeUpcoming], 4, 1);
 
   // Avant le match, le titre et le résumé ne peuvent rien dévoiler : ils restent visibles
   const preHeadline = analysis && !finished ? localized(analysis, 'headline', locale) : undefined;
