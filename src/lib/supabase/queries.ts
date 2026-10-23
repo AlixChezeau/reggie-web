@@ -1,22 +1,45 @@
 import { createClient } from './server';
-import { Match, TeamStanding, Team } from '@/types';
+import { Match, MatchAnalysis, Team } from '@/types';
 import { getTeamByAbbreviation } from '@/constants/teams';
-import { format, subDays, startOfDay, endOfDay } from 'date-fns';
-import { toZonedTime } from 'date-fns-tz';
+import { addDays, format } from 'date-fns';
+import { formatInTimeZone, fromZonedTime } from 'date-fns-tz';
 import { generateMatchSlug } from '@/lib/utils/slugify';
 
+/**
+ * Lecture seule. Règle zéro spoil : aucune requête ne lit home_score ni away_score,
+ * pour qu'aucun score ne puisse arriver dans une page, même par erreur.
+ *
+ * Une « nuit » est une journée NBA à l'heure de New York (comme dans l'app) :
+ * la nuit du 21 au 22 octobre en France est la journée du 21 octobre aux États-Unis.
+ */
 const ET_TIMEZONE = 'America/New_York';
 
-function getETDate(): Date {
-  return toZonedTime(new Date(), ET_TIMEZONE);
-}
+const GAME_SELECT = `
+  id,
+  nba_game_id,
+  scheduled_at,
+  status,
+  home_team:teams!games_home_team_id_fkey(abbreviation, name, city),
+  away_team:teams!games_away_team_id_fkey(abbreviation, name, city),
+  game_analyses(*)
+`;
 
-function enrichTeam(dbTeam: { abbreviation: string; name?: string; city?: string }): Team {
+type DbTeam = { abbreviation: string; name?: string; city?: string };
+type DbGame = {
+  id: string;
+  nba_game_id: string;
+  scheduled_at: string;
+  status: Match['status'];
+  home_team: DbTeam;
+  away_team: DbTeam;
+  game_analyses?: MatchAnalysis[] | null;
+};
+
+function enrichTeam(dbTeam: DbTeam): Team {
   const staticTeam = getTeamByAbbreviation(dbTeam.abbreviation);
   if (staticTeam) {
     return staticTeam;
   }
-  // Fallback for unknown teams
   return {
     id: 0,
     name: dbTeam.name || dbTeam.abbreviation,
@@ -30,7 +53,16 @@ function enrichTeam(dbTeam: { abbreviation: string; name?: string; city?: string
   };
 }
 
-function transformMatch(dbMatch: any): Match {
+function latest(analyses: MatchAnalysis[], type: 'pre' | 'post'): MatchAnalysis | undefined {
+  return analyses
+    .filter((a) => a.type === type)
+    .sort((a, b) => (b.created_at || '').localeCompare(a.created_at || ''))[0];
+}
+
+function transformMatch(dbMatch: DbGame): Match {
+  const analyses = dbMatch.game_analyses || [];
+  const pre = latest(analyses, 'pre');
+  const post = dbMatch.status === 'finished' ? latest(analyses, 'post') : undefined;
   const match: Match = {
     id: dbMatch.id,
     nba_game_id: dbMatch.nba_game_id,
@@ -38,120 +70,109 @@ function transformMatch(dbMatch: any): Match {
     away_team: enrichTeam(dbMatch.away_team),
     scheduled_at: dbMatch.scheduled_at,
     status: dbMatch.status,
-    home_score: dbMatch.home_score,
-    away_score: dbMatch.away_score,
-    analysis: dbMatch.game_analyses?.[0] || undefined,
+    pre_analysis: pre,
+    post_analysis: post,
+    // Un match terminé sans après-match n'a pas encore de verdict publiable
+    analysis: dbMatch.status === 'finished' ? post : pre,
   };
   match.slug = generateMatchSlug(match);
   return match;
 }
 
-export async function getYesterdayMatches(): Promise<Match[]> {
-  const supabase = await createClient();
-  const etNow = getETDate();
-  const yesterday = subDays(etNow, 1);
-
-  const { data, error } = await supabase
-    .from('games')
-    .select(`
-      id,
-      nba_game_id,
-      scheduled_at,
-      status,
-      home_score,
-      away_score,
-      home_team:teams!games_home_team_id_fkey(abbreviation, name, city),
-      away_team:teams!games_away_team_id_fkey(abbreviation, name, city),
-      game_analyses(*)
-    `)
-    .gte('scheduled_at', startOfDay(yesterday).toISOString())
-    .lte('scheduled_at', endOfDay(yesterday).toISOString())
-    .not('game_analyses', 'is', null)
-    .order('scheduled_at', { ascending: true });
-
-  if (error) {
-    console.error('Error fetching yesterday matches:', error);
-    return [];
-  }
-
-  const matches = (data || []).map(transformMatch);
-
-  // Sort by rating (highest first)
-  return matches.sort((a, b) => {
-    const ratingA = a.analysis?.match_interest_score || a.analysis?.rating || 0;
-    const ratingB = b.analysis?.match_interest_score || b.analysis?.rating || 0;
-    return (ratingB / 10) - (ratingA / 10);
-  });
+/** Date NBA (heure de New York) d'un instant, au format yyyy-MM-dd */
+export function etDateOf(iso: string | Date): string {
+  return formatInTimeZone(iso, ET_TIMEZONE, 'yyyy-MM-dd');
 }
 
-export async function getTodayMatches(): Promise<Match[]> {
-  const supabase = await createClient();
-  const etNow = getETDate();
+function etDayRange(etDate: string): { start: string; end: string } {
+  const start = fromZonedTime(`${etDate}T00:00:00`, ET_TIMEZONE);
+  const nextDay = format(addDays(new Date(`${etDate}T12:00:00Z`), 1), 'yyyy-MM-dd');
+  const end = fromZonedTime(`${nextDay}T00:00:00`, ET_TIMEZONE);
+  return { start: start.toISOString(), end: end.toISOString() };
+}
+
+/** Tous les matchs d'une nuit, par heure de début */
+export async function getNight(etDate: string): Promise<Match[]> {
+  const supabase = createClient();
+  if (!supabase || !/^\d{4}-\d{2}-\d{2}$/.test(etDate)) return [];
+  const { start, end } = etDayRange(etDate);
 
   const { data, error } = await supabase
     .from('games')
-    .select(`
-      id,
-      nba_game_id,
-      scheduled_at,
-      status,
-      home_score,
-      away_score,
-      home_team:teams!games_home_team_id_fkey(abbreviation, name, city),
-      away_team:teams!games_away_team_id_fkey(abbreviation, name, city),
-      game_analyses(*)
-    `)
-    .gte('scheduled_at', startOfDay(etNow).toISOString())
-    .lte('scheduled_at', endOfDay(etNow).toISOString())
+    .select(GAME_SELECT)
+    .gte('scheduled_at', start)
+    .lt('scheduled_at', end)
     .order('scheduled_at', { ascending: true });
 
   if (error) {
-    console.error('Error fetching today matches:', error);
+    console.error('Error fetching night:', error);
     return [];
   }
+  return ((data || []) as unknown as DbGame[]).map(transformMatch);
+}
 
-  const matches = (data || []).map(transformMatch);
+/** La dernière nuit terminée qui a des verdicts : « la nuit en couleurs » du matin */
+export async function getLastNight(): Promise<{ date: string; matches: Match[] } | null> {
+  const supabase = createClient();
+  if (!supabase) return null;
 
-  // Sort by rating (highest first), then by time
-  return matches.sort((a, b) => {
-    const ratingA = a.analysis?.match_interest_score || a.analysis?.rating || 0;
-    const ratingB = b.analysis?.match_interest_score || b.analysis?.rating || 0;
-    const ratingDiff = (ratingB / 10) - (ratingA / 10);
-    if (ratingDiff !== 0) return ratingDiff;
-    return new Date(a.scheduled_at).getTime() - new Date(b.scheduled_at).getTime();
-  });
+  const { data, error } = await supabase
+    .from('games')
+    .select('scheduled_at')
+    .eq('status', 'finished')
+    .lte('scheduled_at', new Date().toISOString())
+    .order('scheduled_at', { ascending: false })
+    .limit(1);
+
+  if (error || !data?.length) {
+    if (error) console.error('Error fetching last night:', error);
+    return null;
+  }
+
+  const date = etDateOf(data[0].scheduled_at);
+  const matches = (await getNight(date)).filter((m) => m.post_analysis);
+  return matches.length ? { date, matches } : null;
+}
+
+/** Les prochains matchs à jouer (« les matchs de cette nuit ») : jamais d'après-match */
+export async function getNextNight(): Promise<{ date: string; matches: Match[] } | null> {
+  const supabase = createClient();
+  if (!supabase) return null;
+
+  const { data, error } = await supabase
+    .from('games')
+    .select('scheduled_at')
+    .eq('status', 'scheduled')
+    .gte('scheduled_at', new Date().toISOString())
+    .order('scheduled_at', { ascending: true })
+    .limit(1);
+
+  if (error || !data?.length) {
+    if (error) console.error('Error fetching next night:', error);
+    return null;
+  }
+
+  const date = etDateOf(data[0].scheduled_at);
+  const matches = (await getNight(date)).filter((m) => m.status !== 'finished');
+  return matches.length ? { date, matches } : null;
 }
 
 export async function getMatchBySlug(slug: string): Promise<Match | null> {
-  const supabase = await createClient();
+  const supabase = createClient();
+  if (!supabase) return null;
 
-  // Parse the slug to extract date and team info
   const dateMatch = slug.match(/(\d{4}-\d{2}-\d{2})$/);
   if (!dateMatch) return null;
 
   const date = dateMatch[1];
   const teamsSlug = slug.slice(0, -(date.length + 1));
-  const teamParts = teamsSlug.split('-vs-');
-  if (teamParts.length !== 2) return null;
-
-  const startDate = new Date(`${date}T00:00:00Z`);
-  const endDate = new Date(`${date}T23:59:59Z`);
+  if (teamsSlug.split('-vs-').length !== 2) return null;
 
   const { data, error } = await supabase
     .from('games')
-    .select(`
-      id,
-      nba_game_id,
-      scheduled_at,
-      status,
-      home_score,
-      away_score,
-      home_team:teams!games_home_team_id_fkey(abbreviation, name, city),
-      away_team:teams!games_away_team_id_fkey(abbreviation, name, city),
-      game_analyses(*)
-    `)
-    .gte('scheduled_at', startDate.toISOString())
-    .lte('scheduled_at', endDate.toISOString())
+    .select(GAME_SELECT)
+    .gte('scheduled_at', `${date}T00:00:00Z`)
+    .lte('scheduled_at', `${date}T23:59:59Z`)
     .order('scheduled_at', { ascending: true });
 
   if (error || !data) {
@@ -159,8 +180,7 @@ export async function getMatchBySlug(slug: string): Promise<Match | null> {
     return null;
   }
 
-  // Find the matching game by comparing generated slugs
-  for (const game of data) {
+  for (const game of data as unknown as DbGame[]) {
     const match = transformMatch(game);
     if (match.slug === slug) {
       return match;
@@ -170,7 +190,9 @@ export async function getMatchBySlug(slug: string): Promise<Match | null> {
   return null;
 }
 
-async function getTeamIdByAbbr(supabase: any, teamAbbr: string): Promise<string | null> {
+async function getTeamIdByAbbr(teamAbbr: string): Promise<string | null> {
+  const supabase = createClient();
+  if (!supabase) return null;
   const { data } = await supabase
     .from('teams')
     .select('id')
@@ -180,27 +202,13 @@ async function getTeamIdByAbbr(supabase: any, teamAbbr: string): Promise<string 
 }
 
 export async function getTeamMatches(teamAbbr: string, limit = 20): Promise<Match[]> {
-  const supabase = await createClient();
-
-  const teamId = await getTeamIdByAbbr(supabase, teamAbbr);
-  if (!teamId) {
-    console.error('Team not found:', teamAbbr);
-    return [];
-  }
+  const supabase = createClient();
+  const teamId = await getTeamIdByAbbr(teamAbbr);
+  if (!supabase || !teamId) return [];
 
   const { data, error } = await supabase
     .from('games')
-    .select(`
-      id,
-      nba_game_id,
-      scheduled_at,
-      status,
-      home_score,
-      away_score,
-      home_team:teams!games_home_team_id_fkey(abbreviation, name, city),
-      away_team:teams!games_away_team_id_fkey(abbreviation, name, city),
-      game_analyses(*)
-    `)
+    .select(GAME_SELECT)
     .or(`home_team_id.eq.${teamId},away_team_id.eq.${teamId}`)
     .not('game_analyses', 'is', null)
     .order('scheduled_at', { ascending: false })
@@ -211,81 +219,19 @@ export async function getTeamMatches(teamAbbr: string, limit = 20): Promise<Matc
     return [];
   }
 
-  return (data || []).map(transformMatch);
-}
-
-export async function getStandings(): Promise<{ east: TeamStanding[]; west: TeamStanding[] }> {
-  const supabase = await createClient();
-
-  const { data, error } = await supabase
-    .from('standings')
-    .select(`
-      conference_rank,
-      wins,
-      losses,
-      win_pct,
-      last_10,
-      streak,
-      games_behind,
-      home_record,
-      away_record,
-      teams(abbreviation, name, city)
-    `)
-    .eq('season', 2025)
-    .order('conference_rank', { ascending: true });
-
-  if (error) {
-    console.error('Error fetching standings:', error);
-    return { east: [], west: [] };
-  }
-
-  const standings: TeamStanding[] = (data || []).map((row: any) => {
-    const team = enrichTeam(row.teams);
-    return {
-      team,
-      conference: team.conference,
-      conference_rank: row.conference_rank,
-      wins: row.wins,
-      losses: row.losses,
-      win_pct: row.win_pct,
-      last_10: row.last_10 || '',
-      streak: row.streak || '',
-      games_behind: row.games_behind,
-      home_record: row.home_record,
-      away_record: row.away_record,
-    };
-  });
-
-  return {
-    east: standings.filter(s => s.conference === 'East'),
-    west: standings.filter(s => s.conference === 'West'),
-  };
+  return ((data || []) as unknown as DbGame[]).map(transformMatch).filter((m) => m.analysis);
 }
 
 export async function getRelatedMatches(teamAbbr: string, currentMatchId: string, limit = 2): Promise<Match[]> {
-  const supabase = await createClient();
-
-  const teamId = await getTeamIdByAbbr(supabase, teamAbbr);
-  if (!teamId) {
-    return [];
-  }
+  const supabase = createClient();
+  const teamId = await getTeamIdByAbbr(teamAbbr);
+  if (!supabase || !teamId) return [];
 
   const { data, error } = await supabase
     .from('games')
-    .select(`
-      id,
-      nba_game_id,
-      scheduled_at,
-      status,
-      home_score,
-      away_score,
-      home_team:teams!games_home_team_id_fkey(abbreviation, name, city),
-      away_team:teams!games_away_team_id_fkey(abbreviation, name, city),
-      game_analyses(*)
-    `)
+    .select(GAME_SELECT)
     .or(`home_team_id.eq.${teamId},away_team_id.eq.${teamId}`)
     .neq('id', currentMatchId)
-    .not('game_analyses', 'is', null)
     .eq('status', 'finished')
     .order('scheduled_at', { ascending: false })
     .limit(limit);
@@ -295,32 +241,20 @@ export async function getRelatedMatches(teamAbbr: string, currentMatchId: string
     return [];
   }
 
-  return (data || []).map(transformMatch);
+  return ((data || []) as unknown as DbGame[]).map(transformMatch).filter((m) => m.analysis);
 }
 
 export async function getUpcomingMatches(teamAbbr: string, limit = 2): Promise<Match[]> {
-  const supabase = await createClient();
-  const now = new Date().toISOString();
-
-  const teamId = await getTeamIdByAbbr(supabase, teamAbbr);
-  if (!teamId) {
-    return [];
-  }
+  const supabase = createClient();
+  const teamId = await getTeamIdByAbbr(teamAbbr);
+  if (!supabase || !teamId) return [];
 
   const { data, error } = await supabase
     .from('games')
-    .select(`
-      id,
-      nba_game_id,
-      scheduled_at,
-      status,
-      home_team:teams!games_home_team_id_fkey(abbreviation, name, city),
-      away_team:teams!games_away_team_id_fkey(abbreviation, name, city),
-      game_analyses(*)
-    `)
+    .select(GAME_SELECT)
     .or(`home_team_id.eq.${teamId},away_team_id.eq.${teamId}`)
     .eq('status', 'scheduled')
-    .gte('scheduled_at', now)
+    .gte('scheduled_at', new Date().toISOString())
     .order('scheduled_at', { ascending: true })
     .limit(limit);
 
@@ -329,32 +263,24 @@ export async function getUpcomingMatches(teamAbbr: string, limit = 2): Promise<M
     return [];
   }
 
-  return (data || []).map(transformMatch);
+  return ((data || []) as unknown as DbGame[]).map(transformMatch);
 }
 
 export async function getAllAnalyzedMatches(): Promise<Match[]> {
-  const supabase = await createClient();
+  const supabase = createClient();
+  if (!supabase) return [];
 
   const { data, error } = await supabase
     .from('games')
-    .select(`
-      id,
-      nba_game_id,
-      scheduled_at,
-      status,
-      home_score,
-      away_score,
-      home_team:teams!games_home_team_id_fkey(abbreviation, name, city),
-      away_team:teams!games_away_team_id_fkey(abbreviation, name, city),
-      game_analyses(*)
-    `)
+    .select(GAME_SELECT)
     .not('game_analyses', 'is', null)
-    .order('scheduled_at', { ascending: false });
+    .order('scheduled_at', { ascending: false })
+    .limit(2000);
 
   if (error) {
     console.error('Error fetching all matches:', error);
     return [];
   }
 
-  return (data || []).map(transformMatch);
+  return ((data || []) as unknown as DbGame[]).map(transformMatch).filter((m) => m.analysis);
 }

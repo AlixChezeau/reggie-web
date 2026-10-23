@@ -1,4 +1,4 @@
-import { format } from 'date-fns';
+import { formatInTimeZone } from 'date-fns-tz';
 import { Match, Team } from '@/types';
 
 export function slugify(text: string): string {
@@ -13,7 +13,8 @@ export function slugify(text: string): string {
 export function generateMatchSlug(match: Match): string {
   const away = slugify(`${match.away_team.city}-${match.away_team.name}`);
   const home = slugify(`${match.home_team.city}-${match.home_team.name}`);
-  const date = format(new Date(match.scheduled_at), 'yyyy-MM-dd');
+  // Date UTC, quel que soit le fuseau du serveur (adresses identiques à celles déjà publiées)
+  const date = formatInTimeZone(match.scheduled_at, 'UTC', 'yyyy-MM-dd');
   return `${away}-vs-${home}-${date}`;
 }
 

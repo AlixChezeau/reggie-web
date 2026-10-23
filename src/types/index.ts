@@ -22,9 +22,11 @@ export interface Match {
   away_team: Team;
   scheduled_at: string;
   status: MatchStatus;
-  home_score?: number;
-  away_score?: number;
+  // Jamais de score : le site ne lit pas home_score / away_score (règle zéro spoil)
+  /** Analyse affichée : l'après-match si le match est terminé, sinon l'avant-match */
   analysis?: MatchAnalysis;
+  pre_analysis?: MatchAnalysis;
+  post_analysis?: MatchAnalysis;
   slug?: string;
 }
 
@@ -108,6 +110,9 @@ export interface MatchAnalysis {
   standout_players?: StandoutPlayer[];
   game_dynamics?: GameDynamics;
   verdict?: Verdict;
+  // Mode « Zéro spoil » (analyses après-match à partir de septembre 2026)
+  zero_spoil_fr?: string;
+  zero_spoil_en?: string;
 }
 
 export interface TeamStanding {
