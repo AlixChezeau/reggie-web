@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { useState } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { routes } from '@/lib/routes';
-import { APP_STORE_URL } from '@/constants/theme';
+import { appStoreHref } from '@/constants/theme';
 
 export function Header() {
   const t = useTranslations('nav');
@@ -36,7 +36,7 @@ export function Header() {
           </nav>
 
           <a
-            href={`${APP_STORE_URL}?ct=en-tete`}
+            href={appStoreHref('en-tete')}
             className="ml-auto md:ml-4 inline-flex items-center rounded-full bg-primary text-on-primary text-sm font-bold px-4 py-2.5 hover:opacity-90 transition-opacity"
           >
             <span className="hidden sm:inline">{t('install')}</span>

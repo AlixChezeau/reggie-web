@@ -26,6 +26,7 @@ export function Footer() {
             <ul className="flex flex-col gap-2.5 text-sm">
               <li><Link href={routes.methodology(locale)} className="text-foreground-secondary hover:text-primary">{t('methodology')}</Link></li>
               <li><Link href={routes.tierList(locale)} className="text-foreground-secondary hover:text-primary">{t('tierList')}</Link></li>
+              <li><Link href={routes.whereToWatch(locale)} className="text-foreground-secondary hover:text-primary">{t('whereToWatch')}</Link></li>
               <li><Link href={routes.teams(locale)} className="text-foreground-secondary hover:text-primary">{t('teams')}</Link></li>
               <li><Link href={routes.privacy(locale)} className="text-foreground-secondary hover:text-primary">{t('privacy')}</Link></li>
             </ul>

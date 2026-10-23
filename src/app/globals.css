@@ -101,3 +101,8 @@ body {
   outline: 2px solid var(--primary);
   outline-offset: 2px;
 }
+
+/* Badge App Store : blanc en thème sombre, noir (badge préféré d'Apple) en thème clair */
+.badge-light { display: none; }
+.light .badge-light { display: block; }
+.light .badge-dark { display: none; }

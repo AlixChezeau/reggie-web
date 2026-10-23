@@ -34,6 +34,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: 'weekly',
       priority: 0.8,
     },
+    // Où regarder la NBA
+    {
+      url: `${BASE_URL}/fr/ou-regarder-la-nba`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.6,
+    },
+    {
+      url: `${BASE_URL}/en/where-to-watch-nba`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.6,
+    },
     // Tier list
     {
       url: `${BASE_URL}/fr/tier-list`,

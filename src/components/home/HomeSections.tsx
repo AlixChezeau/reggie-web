@@ -187,7 +187,7 @@ export async function FaqAndCta() {
       </div>
       <div className="rounded-3xl bg-surface border border-card-border p-7 flex flex-col items-start gap-4">
         <p className="text-2xl font-bold leading-snug">{t('ctaTitle')}</p>
-        <AppStoreButton campaign="accueil-bas" />
+        <AppStoreButton campaign="accueil-bas" variant="text" />
       </div>
     </section>
   );
