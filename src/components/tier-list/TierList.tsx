@@ -1,12 +1,13 @@
 'use client';
 
-import Image from 'next/image';
 import { useEffect, useMemo, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { DEMO_PLAYERS } from './demoPlayers';
 import { TIERS } from './tiers';
 import { getBrowserClient } from '@/lib/supabase/browser';
 import type { TierPlayer } from '@/lib/tierList';
+import { TeamLogo } from '@/components/ui/TeamLogo';
+import { getTeamByAbbreviation } from '@/constants/teams';
 
 /** Poids d'un vote dans l'aperçu : assez pour voir un joueur changer de place */
 const VOTE_WEIGHT = 45;
@@ -168,7 +169,7 @@ export function TierList({ players }: { players: TierPlayer[] | null }) {
                     <span className="flex items-center gap-1.5 text-xs text-foreground-secondary">
                       {player.team && (
                         <>
-                          <Image src={`/teams/${player.team.toLowerCase()}.png`} alt="" width={16} height={16} className="w-4 h-4 object-contain" />
+                          {getTeamByAbbreviation(player.team) && <TeamLogo team={getTeamByAbbreviation(player.team)!} size={16} />}
                           {player.team}
                         </>
                       )}
