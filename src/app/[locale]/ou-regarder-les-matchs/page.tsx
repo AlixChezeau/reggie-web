@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-/** Où regarder la NBA : en français l'offre en France, en anglais l'offre aux États-Unis. Jamais de résultat. */
+/** Où regarder les matchs : en français l'offre en France, en anglais l'offre aux États-Unis. Jamais de résultat. */
 export default async function WhereToWatchPage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);

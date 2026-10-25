@@ -37,13 +37,19 @@ export async function MatchRow({ match, locale, withText = false, showDate = fal
         <span>{formatTime(match.scheduled_at, locale)}</span>
       </span>
       <span className="flex flex-col gap-1 min-w-0 flex-1">
-        <span className="flex items-center gap-1.5 font-semibold text-foreground">
-          <TeamLogo team={match.away_team} size={26} />
-          {match.away_team.abbreviation}
-          <span className="text-foreground-muted" aria-hidden="true">–</span>
+        {/* Le sigle est dans les volets : à côté, le surnom (Knicks, Lakers), comme dans l'app.
+            Sur mobile, une équipe par ligne pour que les volets tiennent dans la carte. */}
+        <span className="flex flex-col gap-1 sm:flex-row sm:items-center sm:gap-1.5 font-semibold text-foreground">
+          <span className="flex items-center gap-1.5 min-w-0">
+            <TeamLogo team={match.away_team} size={26} />
+            <span className="truncate">{match.away_team.name}</span>
+          </span>
+          <span className="hidden sm:inline text-foreground-muted" aria-hidden="true">–</span>
           <span className="sr-only">{locale === 'fr' ? 'contre' : 'vs'}</span>
-          <TeamLogo team={match.home_team} size={26} />
-          {match.home_team.abbreviation}
+          <span className="flex items-center gap-1.5 min-w-0">
+            <TeamLogo team={match.home_team} size={26} />
+            <span className="truncate">{match.home_team.name}</span>
+          </span>
         </span>
         <span className="text-xs text-foreground-secondary">{detail}</span>
         {withText && finished && match.analysis && (

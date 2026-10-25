@@ -23,6 +23,8 @@
   --rating-must-watch: #22C55E;
   --rating-worth-it: #EAB308;
   --rating-skip: #EF4444;
+  /* Liseré des volets d'équipe (clair sur fond nuit) */
+  --flap-edge: rgba(255, 255, 255, 0.10);
   color-scheme: dark;
 }
 
@@ -40,6 +42,8 @@
   --primary: #E67E22;
   --on-primary: #0A0F1C;
   --overlay: rgba(0, 0, 0, 0.3);
+  /* Volets argent ou noirs sur fond parquet : liseré foncé, comme dans l'app */
+  --flap-edge: rgba(0, 0, 0, 0.14);
   color-scheme: light;
 }
 

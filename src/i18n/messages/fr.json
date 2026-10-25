@@ -1,7 +1,7 @@
 {
   "metadata": {
-    "title": "Reggie · Les matchs NBA à revoir, sans spoil",
-    "description": "Chaque matin, un verdict en couleur pour chaque match NBA de la nuit : Épique, Immanquable, À voir ou À zapper. Jamais un score. L'app est gratuite sur iPhone."
+    "title": "Reggie · Les matchs de basket US à revoir, sans spoil",
+    "description": "Chaque matin, un verdict en couleur pour chaque match de basket US de la nuit : Épique, Immanquable, À voir ou À zapper. Jamais un score. L'app est gratuite sur iPhone."
   },
   "nav": {
     "night": "La nuit",
@@ -32,7 +32,7 @@
   },
   "home": {
     "tagline": "Watch smart. No spoilers.",
-    "title": "Le bon replay NBA, chaque matin",
+    "title": "Le bon replay de basket US, chaque matin",
     "intro": "Pendant que tu dors, Reggie suit tous les matchs. Au réveil, un verdict en couleur pour chacun. Jamais un score.",
     "phoneTitle": "La nuit en couleurs · {count, plural, one {# match} other {# matchs}}",
     "proofKicker": "Ce matin, sur Reggie",
@@ -69,8 +69,8 @@
     "a2": "Parce que tu vas peut-être regarder le match. Reggie te dit s'il vaut le coup, jamais comment il finit.",
     "q3": "Et sur Android ?",
     "a3": "Pas encore : Reggie est sur iPhone pour l'instant.",
-    "q4": "Reggie est lié à la NBA ?",
-    "a4": "Non. Reggie n'est affilié ni à la NBA ni à ses équipes.",
+    "q4": "Reggie est lié à une ligue ou à une équipe ?",
+    "a4": "Non. Reggie est indépendant : il n'est affilié à aucune ligue, équipe ni diffuseur.",
     "ctaTitle": "Demain matin, le verdict t'attend"
   },
   "night": {
@@ -79,8 +79,8 @@
     "upcoming": "{count, plural, one {Un match au programme.} other {# matchs au programme.}} Verdict le lendemain matin.",
     "previous": "Nuit précédente",
     "next": "Nuit suivante",
-    "empty": "Pas de match NBA cette nuit-là.",
-    "metaDescription": "{title} : le verdict de chaque match NBA, sans spoil. Épique, Immanquable, À voir ou À zapper."
+    "empty": "Pas de match cette nuit-là.",
+    "metaDescription": "{title} : le verdict de chaque match de basket US, sans spoil. Épique, Immanquable, À voir ou À zapper."
   },
   "match": {
     "back": "Toute la nuit",
@@ -108,7 +108,7 @@
   },
   "tierList": {
     "kicker": "Le vote des fans",
-    "title": "La tier list NBA",
+    "title": "La tier list",
     "intro": "Tu fais monter qui ? Un vote par joueur et par jour. Chaque dimanche, le classement part sur Instagram.",
     "demo": "Aperçu : les votes ne sont pas encore enregistrés et le classement affiché est un exemple.",
     "up": "Faire monter {name}",
@@ -119,7 +119,7 @@
     "trendUp": "monte de {count}",
     "trendDown": "descend de {count}",
     "trendSame": "stable",
-    "metaDescription": "La tier list NBA des fans : fais monter ou descendre les joueurs. Publiée chaque dimanche.",
+    "metaDescription": "La tier list des fans de basket US : fais monter ou descendre les joueurs. Publiée chaque dimanche.",
     "errorGeneric": "Ton vote n'est pas passé. Réessaie dans un instant.",
     "errorTooMany": "Trop de votes depuis cette connexion aujourd'hui. Reviens demain."
   },
@@ -138,9 +138,9 @@
     "privacy": "Confidentialité",
     "teams": "Équipes",
     "tierList": "Tier list",
-    "disclaimer": "Reggie n'est affilié ni à la NBA ni à ses équipes.",
+    "disclaimer": "Reggie est indépendant : il n'est affilié à aucune ligue, équipe ni diffuseur.",
     "copyright": "© 2026 Reggie",
-    "whereToWatch": "Où regarder la NBA"
+    "whereToWatch": "Où regarder les matchs"
   },
   "methodology": {
     "title": "Comment Reggie note",
@@ -155,7 +155,7 @@
     "suspense": "Suspense",
     "suspenseText": "L'écart en fin de match, les changements de leader, les retours, une éventuelle prolongation.",
     "stakes": "Enjeu",
-    "stakesText": "La place des deux équipes, les rivalités, les playoffs et la NBA Cup.",
+    "stakesText": "La place des deux équipes, les rivalités, les playoffs et la Cup.",
     "performances": "Performances",
     "performancesText": "Les grosses soirées individuelles.",
     "stars": "Stars",
@@ -173,9 +173,9 @@
     "limitsText": "Une note reste un avis. Un match À voir entre tes deux équipes préférées peut te plaire plus qu'un Épique : c'est ton replay."
   },
   "teams": {
-    "title": "Équipes NBA",
-    "pageTitle": "Équipes NBA",
-    "pageDescription": "Découvrez toutes les équipes NBA et leurs analyses de matchs sur Reggie.",
+    "title": "Équipes",
+    "pageTitle": "Équipes",
+    "pageDescription": "Toutes les équipes de basket US et le verdict de Reggie sur leurs matchs, sans spoil.",
     "eastern": "Conférence Est",
     "western": "Conférence Ouest"
   }

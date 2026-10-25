@@ -30,7 +30,7 @@ export const privacy: Record<'fr' | 'en', PrivacyContent> = {
     description: 'Ce que Reggie collecte sur le site et dans l’app, et ce que nous ne collectons pas.',
     updated: 'Mise à jour le 23 octobre 2026',
     intro:
-      'Reggie te dit quels matchs NBA valent le coup d’être revus, sans spoil. Pas de compte, pas de nom, pas d’e-mail : on collecte le strict nécessaire pour faire marcher le site et l’app, et rien pour te suivre.',
+      'Reggie te dit quels matchs de basket US valent le coup d’être revus, sans spoil. Pas de compte, pas de nom, pas d’e-mail : on collecte le strict nécessaire pour faire marcher le site et l’app, et rien pour te suivre.',
     editorLabel: 'Éditeur : MRC Digital',
     sections: [
       {
@@ -61,7 +61,7 @@ export const privacy: Record<'fr' | 'en', PrivacyContent> = {
       {
         title: 'Où vont les données',
         items: [
-          'Supabase, notre base de données, hébergée en Irlande (Union européenne) : les données NBA, tes préférences de notification et les votes.',
+          'Supabase, notre base de données, hébergée en Irlande (Union européenne) : les données des matchs, tes préférences de notification et les votes.',
           'Firebase, de Google : l’envoi des notifications et, si tu l’acceptes, les statistiques d’usage.',
           'Vercel : l’hébergement du site.',
         ],
@@ -92,7 +92,7 @@ export const privacy: Record<'fr' | 'en', PrivacyContent> = {
     description: 'What Reggie collects on the website and in the app, and what it does not.',
     updated: 'Updated October 23, 2026',
     intro:
-      'Reggie tells you which NBA games are worth watching, spoiler-free. No account, no name, no email: we only collect what the website and the app need to work, and nothing to track you.',
+      'Reggie tells you which US basketball games are worth watching, spoiler-free. No account, no name, no email: we only collect what the website and the app need to work, and nothing to track you.',
     editorLabel: 'Publisher: MRC Digital',
     sections: [
       {
@@ -123,7 +123,7 @@ export const privacy: Record<'fr' | 'en', PrivacyContent> = {
       {
         title: 'Where the data goes',
         items: [
-          'Supabase, our database, hosted in Ireland (European Union): NBA data, notification preferences and votes.',
+          'Supabase, our database, hosted in Ireland (European Union): game data, notification preferences and votes.',
           'Firebase, by Google: sending notifications and, if you allow it, usage statistics.',
           'Vercel: website hosting.',
         ],

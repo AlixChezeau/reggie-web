@@ -7,7 +7,9 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://reggie-web.vercel.
 export function generateMatchJsonLd(match: Match, locale: 'fr' | 'en') {
   const description = match.analysis
     ? `${verdictLabel(verdictFor(match.analysis), locale)}. ${zeroSpoilText(match.analysis, locale)}`
-    : 'NBA';
+    : locale === 'fr'
+      ? 'Match de basket US'
+      : 'US basketball game';
 
   return {
     '@context': 'https://schema.org',
@@ -35,7 +37,7 @@ export function generateWebsiteJsonLd(locale: 'fr' | 'en') {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
     name: 'Reggie',
-    description: locale === 'fr' ? 'Les matchs NBA à revoir, sans spoil.' : 'NBA games worth rewatching. No spoilers.',
+    description: locale === 'fr' ? 'Les matchs de basket US à revoir, sans spoil.' : 'US basketball games worth rewatching. No spoilers.',
     url: `${SITE_URL}/${locale}`,
     inLanguage: locale === 'fr' ? 'fr-FR' : 'en-US',
   };

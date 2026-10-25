@@ -1,7 +1,7 @@
 {
   "metadata": {
-    "title": "Reggie · NBA games worth rewatching. No spoilers.",
-    "description": "Every morning, a color-coded verdict for every NBA game from last night: Epic, Must-watch, Worth it or Skip it. Never a score. Free on iPhone."
+    "title": "Reggie · US basketball games worth rewatching. No spoilers.",
+    "description": "Every morning, a color-coded verdict for each of last night's US basketball games: Epic, Must-watch, Worth it or Skip it. Never a score. Free on iPhone."
   },
   "nav": {
     "night": "Last night",
@@ -32,8 +32,8 @@
   },
   "home": {
     "tagline": "Watch smart. No spoilers.",
-    "title": "The right NBA replay, every morning",
-    "intro": "Reggie follows every NBA game. The next morning, each one gets a color-coded verdict, so you know what to rewatch. Never a score.",
+    "title": "The right US basketball replay, every morning",
+    "intro": "Reggie follows every US basketball game. The next morning, each one gets a color-coded verdict, so you know what to rewatch. Never a score.",
     "phoneTitle": "Last night in colors · {count, plural, one {# game} other {# games}}",
     "proofKicker": "This morning on Reggie",
     "proofQuestion": "{count, plural, one {One game. Worth a rewatch?} other {# games. Which one will you rewatch?}}",
@@ -69,8 +69,8 @@
     "a2": "Because you might watch the game. Reggie tells you if it's worth it, never how it ends.",
     "q3": "What about Android?",
     "a3": "Not yet: Reggie is iPhone-only for now.",
-    "q4": "Is Reggie affiliated with the NBA?",
-    "a4": "No. Reggie is not affiliated with the NBA or its teams.",
+    "q4": "Is Reggie affiliated with a league or a team?",
+    "a4": "No. Reggie is independent and not affiliated with any league, team or broadcaster.",
     "ctaTitle": "Tomorrow morning, your verdict is waiting"
   },
   "night": {
@@ -79,8 +79,8 @@
     "upcoming": "{count, plural, one {One game on the schedule.} other {# games on the schedule.}} Verdicts the next morning.",
     "previous": "Previous night",
     "next": "Next night",
-    "empty": "No NBA games that night.",
-    "metaDescription": "{title}: Reggie's verdict on every NBA game, spoiler-free. Epic, Must-watch, Worth it or Skip it."
+    "empty": "No games that night.",
+    "metaDescription": "{title}: Reggie's verdict on every US basketball game, spoiler-free. Epic, Must-watch, Worth it or Skip it."
   },
   "match": {
     "back": "The whole night",
@@ -108,7 +108,7 @@
   },
   "tierList": {
     "kicker": "The fans' vote",
-    "title": "The NBA tier list",
+    "title": "The tier list",
     "intro": "Who's moving up? One vote per player per day. Every Sunday, the rankings go out on Instagram.",
     "demo": "Preview: votes aren't saved yet, and the rankings shown are an example.",
     "up": "Move {name} up",
@@ -119,7 +119,7 @@
     "trendUp": "up {count}",
     "trendDown": "down {count}",
     "trendSame": "no change",
-    "metaDescription": "The fans' NBA tier list: move players up or down. Posted every Sunday.",
+    "metaDescription": "The US basketball fans' tier list: move players up or down. Posted every Sunday.",
     "errorGeneric": "Your vote didn't go through. Try again in a moment.",
     "errorTooMany": "Too many votes from this connection today. Come back tomorrow."
   },
@@ -138,9 +138,9 @@
     "privacy": "Privacy",
     "teams": "Teams",
     "tierList": "Tier list",
-    "disclaimer": "Reggie is not affiliated with the NBA or its teams.",
+    "disclaimer": "Reggie is independent and not affiliated with any league, team or broadcaster.",
     "copyright": "© 2026 Reggie",
-    "whereToWatch": "Where to watch the NBA"
+    "whereToWatch": "Where to watch the games"
   },
   "methodology": {
     "title": "How Reggie rates games",
@@ -155,7 +155,7 @@
     "suspense": "Suspense",
     "suspenseText": "The margin late in the game, lead changes, comebacks, overtime.",
     "stakes": "Stakes",
-    "stakesText": "Where both teams stand, rivalries, the playoffs and the NBA Cup.",
+    "stakesText": "Where both teams stand, rivalries, the playoffs and the Cup.",
     "performances": "Performances",
     "performancesText": "Big individual nights.",
     "stars": "Stars",
@@ -173,9 +173,9 @@
     "limitsText": "A rating is still an opinion. A Worth it game between your two favorite teams might beat an Epic one for you: it's your replay."
   },
   "teams": {
-    "title": "NBA Teams",
-    "pageTitle": "NBA Teams",
-    "pageDescription": "Explore all NBA teams and their game analyses on Reggie.",
+    "title": "Teams",
+    "pageTitle": "Teams",
+    "pageDescription": "Every US basketball team and Reggie's verdict on their games, spoiler-free.",
     "eastern": "Eastern Conference",
     "western": "Western Conference"
   }

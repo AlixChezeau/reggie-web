@@ -11,7 +11,7 @@ export const routes = {
   teams: (l: Locale) => `/${l}/${l === 'fr' ? 'equipes' : 'teams'}`,
   team: (l: Locale, slug: string) => `/${l}/${l === 'fr' ? 'equipe' : 'team'}/${slug}`,
   privacy: (l: Locale) => `/${l}/${l === 'fr' ? 'confidentialite' : 'privacy'}`,
-  whereToWatch: (l: Locale) => `/${l}/${l === 'fr' ? 'ou-regarder-la-nba' : 'where-to-watch-nba'}`,
+  whereToWatch: (l: Locale) => `/${l}/${l === 'fr' ? 'ou-regarder-les-matchs' : 'where-to-watch'}`,
 };
 
 /** Segments à traduire quand on change de langue : [français, anglais] */
@@ -21,5 +21,5 @@ export const translatedSegments: [string, string][] = [
   ['equipes', 'teams'],
   ['methodologie', 'methodology'],
   ['confidentialite', 'privacy'],
-  ['ou-regarder-la-nba', 'where-to-watch-nba'],
+  ['ou-regarder-les-matchs', 'where-to-watch'],
 ];

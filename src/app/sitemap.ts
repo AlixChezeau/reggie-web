@@ -34,15 +34,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: 'weekly',
       priority: 0.8,
     },
-    // Où regarder la NBA
+    // Où regarder les matchs
     {
-      url: `${BASE_URL}/fr/ou-regarder-la-nba`,
+      url: `${BASE_URL}/fr/ou-regarder-les-matchs`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.6,
     },
     {
-      url: `${BASE_URL}/en/where-to-watch-nba`,
+      url: `${BASE_URL}/en/where-to-watch`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.6,

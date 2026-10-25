@@ -43,12 +43,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
+/** Une équipe de l'affiche : le sigle en volets et, dessous, le surnom (Knicks, Lakers), comme dans l'app */
 function TeamBlock({ team }: { team: Team }) {
   return (
     <div className="flex flex-col items-center gap-2 min-w-0">
-      <TeamLogo team={team} size={72} />
-      <span className="font-title text-3xl leading-none">{team.abbreviation}</span>
-      <span className="text-sm text-foreground-secondary text-center">{team.city}</span>
+      {/* Volets plus petits sur mobile pour laisser la place au verdict au centre */}
+      <span className="flex sm:hidden"><TeamLogo team={team} size={44} /></span>
+      <span className="hidden sm:flex"><TeamLogo team={team} size={72} /></span>
+      <span className="font-title text-2xl sm:text-3xl leading-none text-center">{team.name}</span>
     </div>
   );
 }
