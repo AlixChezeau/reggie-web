@@ -1,6 +1,8 @@
 'use client';
 
 import { useState } from 'react';
+import { VerdictPill } from '@/components/ui/VerdictPill';
+import type { DisplayVerdict } from '@/lib/verdict';
 
 interface Criterion {
   label: string;
@@ -10,7 +12,7 @@ interface Criterion {
 
 interface DreamContent {
   rating: string;
-  ratingColor: string;
+  verdict: DisplayVerdict;
   headline?: string;
   summary?: string;
   bestFor?: string;
@@ -86,15 +88,17 @@ export function DreamReveal({ slug, locale, labels }: DreamRevealProps) {
     );
   }
 
-  const { rating, ratingColor, headline, summary, bestFor, criteria } = content;
+  const { rating, verdict, headline, summary, bestFor, criteria } = content;
 
   return (
     <div className="flex flex-col gap-5" aria-live="polite">
-      <div className="flex items-center gap-3">
-        <span className="font-title text-4xl leading-none rounded-xl px-3.5 py-2" style={{ backgroundColor: ratingColor, color: '#0A0F1C' }}>
-          {rating}
+      {/* La note sans boîte, comme dans l'app : chiffre en grand, verdict en couleur à côté */}
+      <div className="flex items-end gap-4">
+        <span className="font-title text-6xl leading-[0.8] pt-[0.1em] text-foreground">{rating}</span>
+        <span className="flex flex-col gap-1 pb-0.5">
+          <VerdictPill verdict={verdict} locale={locale} size="md" />
+          <span className="text-sm text-foreground-secondary">{labels.rating} / 10</span>
         </span>
-        <span className="text-foreground-secondary">{labels.rating} / 10</span>
       </div>
       {headline && <h2 className="text-2xl font-bold text-primary leading-snug">{headline}</h2>}
       {summary && <p className="text-lg leading-relaxed">{summary}</p>}

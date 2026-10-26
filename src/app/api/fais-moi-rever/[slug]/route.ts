@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { getTranslations } from 'next-intl/server';
 import { getMatchBySlug } from '@/lib/supabase/queries';
-import { formatRating, localized, ratingOf, verdictColor, verdictFor } from '@/lib/verdict';
+import { formatRating, localized, ratingOf, verdictFor } from '@/lib/verdict';
 
 export const revalidate = 600;
 
@@ -46,7 +46,7 @@ export async function GET(request: Request, { params }: { params: Promise<{ slug
   return NextResponse.json(
     {
       rating: formatRating(ratingOf(analysis), locale),
-      ratingColor: verdictColor(verdictFor(analysis)),
+      verdict: verdictFor(analysis),
       // Avant le match, le titre et le résumé sont déjà sur la page
       headline: finished ? localized(analysis, 'headline', locale) : undefined,
       summary: finished ? localized(analysis, 'summary', locale) : undefined,

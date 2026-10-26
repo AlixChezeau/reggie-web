@@ -23,6 +23,11 @@
   --rating-must-watch: #22C55E;
   --rating-worth-it: #EAB308;
   --rating-skip: #EF4444;
+  /* Verdict écrit sans pastille derrière : teinte plus claire sur fond nuit (comme l'app 1.3.1) */
+  --verdict-epic: #A78BFA;
+  --verdict-must-watch: #4ADE80;
+  --verdict-worth-it: #FACC15;
+  --verdict-skip: #F87171;
   /* Liseré des volets d'équipe (clair sur fond nuit) */
   --flap-edge: rgba(255, 255, 255, 0.10);
   color-scheme: dark;
@@ -44,6 +49,11 @@
   --overlay: rgba(0, 0, 0, 0.3);
   /* Volets argent ou noirs sur fond parquet : liseré foncé, comme dans l'app */
   --flap-edge: rgba(0, 0, 0, 0.14);
+  /* Verdict sans pastille : teinte plus foncée sur fond parquet */
+  --verdict-epic: #7C3AED;
+  --verdict-must-watch: #15803D;
+  --verdict-worth-it: #A16207;
+  --verdict-skip: #DC2626;
   color-scheme: light;
 }
 

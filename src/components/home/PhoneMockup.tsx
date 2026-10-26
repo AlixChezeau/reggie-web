@@ -45,7 +45,7 @@ export async function PhoneMockup({ matches, locale }: PhoneMockupProps) {
       {rows.slice(0, 5).map((row, i) => (
         <div key={i} className="flex items-center justify-between rounded-2xl bg-white/5 border border-white/10 px-3 py-2.5 text-[13px] font-semibold">
           <span>{row.label}</span>
-          <VerdictPill verdict={row.verdict} locale={locale} size="sm" className="!text-[13px]" />
+          <VerdictPill verdict={row.verdict} locale={locale} size="sm" onDark />
         </div>
       ))}
     </div>

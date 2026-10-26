@@ -101,7 +101,7 @@ export async function VerdictsAndComingUp({ nextNight, locale }: { nextNight: Ni
     <section className={`${container} pt-16 grid md:grid-cols-2 gap-10`}>
       <div className="flex flex-col gap-4">
         <h2 className={`${kicker} text-foreground-secondary`}>{t('verdictsTitle')}</h2>
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-x-5 gap-y-2">
           <VerdictPill verdict="epic" locale={locale} />
           <VerdictPill verdict="must_watch" locale={locale} />
           <VerdictPill verdict="worth_it" locale={locale} />
